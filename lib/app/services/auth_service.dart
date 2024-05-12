@@ -18,10 +18,8 @@ class AuthService extends GetxService {
 
   Future<bool> registration(ShortUser user) async {
     try {
-      var response = await _client.post(ApiEndpoints.registration, data: {
-        StringName.username.name: user.username,
-        StringName.password.name: user.password,
-      });
+      var response =
+          await _client.post(ApiEndpoints.registration, data: user.toJson());
       if (response.statusCode == 201) return true;
     } catch (e) {
       printInfo(info: e.toString());
@@ -32,10 +30,7 @@ class AuthService extends GetxService {
 
   Future<bool> login(ShortUser user) async {
     try {
-      var response = await _client.post(ApiEndpoints.login, data: {
-        StringName.username.name: user.username,
-        StringName.password.name: user.password,
-      });
+      var response = await _client.post(ApiEndpoints.login, data: user.toJson());
       _token = Token.fromJson(response.data);
       storageService.writeRefresh(_token.refresh);
       if (response.statusCode == 200) return true;

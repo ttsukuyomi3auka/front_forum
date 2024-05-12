@@ -21,6 +21,21 @@ abstract class ApiEndpoints {
 class ShortUser {
   String username;
   String password;
+  String name;
+  String surname;
 
-  ShortUser({required this.username, required this.password});
+  ShortUser(
+      {required this.username,
+      required this.password,
+      required this.name,
+      required this.surname});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'username': username,
+      'password': password,
+      'name': name,
+      'surname': surname,
+    };
+  }
 }
