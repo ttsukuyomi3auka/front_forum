@@ -37,5 +37,13 @@ class ShortUser {
       'name': name,
       'surname': surname,
     };
+  
+  }
+  Map<String, dynamic> toJsonLogin() {
+    return {
+      'username': username,
+      'password': password,
+    };
+  
   }
 }

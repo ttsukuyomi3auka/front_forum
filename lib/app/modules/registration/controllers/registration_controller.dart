@@ -15,12 +15,6 @@ class RegistrationController extends GetxController {
   Rx<bool> invisible = true.obs;
   Rx<Color> textColor = Colors.black.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-
 
   void registration() async {
     user.username = username.text;

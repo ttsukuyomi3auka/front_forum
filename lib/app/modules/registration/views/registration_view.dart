@@ -14,15 +14,15 @@ class RegistrationView extends GetView<RegistrationController> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.orange[50], // Молочный фон
+        color: Colors.orange[50],
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(20),
             child: Container(
               width: 500,
               decoration: BoxDecoration(
-                color: Colors.white, // Белый цвет контейнера
-                borderRadius: BorderRadius.circular(10), // Закругленные углы
+                color: Colors.white, 
+                borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(60),

@@ -12,6 +12,7 @@ class AuthService extends GetxService {
 
   Future<AuthService> init() async {
     var refresh = storageService.readRefresh() ?? "";
+    print(refresh);
     _token = Token(access: "", refresh: refresh);
     return this;
   }
@@ -30,7 +31,8 @@ class AuthService extends GetxService {
 
   Future<bool> login(ShortUser user) async {
     try {
-      var response = await _client.post(ApiEndpoints.login, data: user.toJson());
+      var response =
+          await _client.post(ApiEndpoints.login, data: user.toJsonLogin());
       _token = Token.fromJson(response.data);
       storageService.writeRefresh(_token.refresh);
       if (response.statusCode == 200) return true;
