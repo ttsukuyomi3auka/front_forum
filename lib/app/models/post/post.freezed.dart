@@ -21,6 +21,8 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Post {
   String get title => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  ReviewStatus get status => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +34,7 @@ abstract class $PostCopyWith<$Res> {
   factory $PostCopyWith(Post value, $Res Function(Post) then) =
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
-  $Res call({String title});
+  $Res call({String title, String description, ReviewStatus status});
 }
 
 /// @nodoc
@@ -49,12 +51,22 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @override
   $Res call({
     Object? title = null,
+    Object? description = null,
+    Object? status = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ReviewStatus,
     ) as $Val);
   }
 }
@@ -66,7 +78,7 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       __$$PostImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title});
+  $Res call({String title, String description, ReviewStatus status});
 }
 
 /// @nodoc
@@ -80,12 +92,22 @@ class __$$PostImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? title = null,
+    Object? description = null,
+    Object? status = null,
   }) {
     return _then(_$PostImpl(
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as ReviewStatus,
     ));
   }
 }
@@ -93,17 +115,22 @@ class __$$PostImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$PostImpl implements _Post {
-  _$PostImpl({required this.title});
+  _$PostImpl(
+      {required this.title, required this.description, required this.status});
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
 
   @override
   final String title;
+  @override
+  final String description;
+  @override
+  final ReviewStatus status;
 
   @override
   String toString() {
-    return 'Post(title: $title)';
+    return 'Post(title: $title, description: $description, status: $status)';
   }
 
   @override
@@ -111,12 +138,15 @@ class _$PostImpl implements _Post {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostImpl &&
-            (identical(other.title, title) || other.title == title));
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.status, status) || other.status == status));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title);
+  int get hashCode => Object.hash(runtimeType, title, description, status);
 
   @JsonKey(ignore: true)
   @override
@@ -133,12 +163,19 @@ class _$PostImpl implements _Post {
 }
 
 abstract class _Post implements Post {
-  factory _Post({required final String title}) = _$PostImpl;
+  factory _Post(
+      {required final String title,
+      required final String description,
+      required final ReviewStatus status}) = _$PostImpl;
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
   @override
   String get title;
+  @override
+  String get description;
+  @override
+  ReviewStatus get status;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

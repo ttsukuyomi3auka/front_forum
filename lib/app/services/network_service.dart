@@ -10,6 +10,8 @@ class NetworkService extends GetxService {
     return this;
   }
 
+  
+
   Future<ApiResponse<T>> get<T>(String url) async {
     try {
       var response = await _client.get(url);

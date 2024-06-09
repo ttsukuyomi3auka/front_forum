@@ -21,6 +21,14 @@ User _$UserFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$User {
   String get username => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get surname => throw _privateConstructorUsedError;
+  String get aboutMe => throw _privateConstructorUsedError;
+  List<Roles> get roles => throw _privateConstructorUsedError;
+  List<Post> get posts => throw _privateConstructorUsedError;
+  List<Comment> get comments => throw _privateConstructorUsedError;
+  List<AreaOfActivity> get areas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -32,7 +40,16 @@ abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res, User>;
   @useResult
-  $Res call({String username});
+  $Res call(
+      {String username,
+      String password,
+      String name,
+      String surname,
+      String aboutMe,
+      List<Roles> roles,
+      List<Post> posts,
+      List<Comment> comments,
+      List<AreaOfActivity> areas});
 }
 
 /// @nodoc
@@ -49,12 +66,52 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
   @override
   $Res call({
     Object? username = null,
+    Object? password = null,
+    Object? name = null,
+    Object? surname = null,
+    Object? aboutMe = null,
+    Object? roles = null,
+    Object? posts = null,
+    Object? comments = null,
+    Object? areas = null,
   }) {
     return _then(_value.copyWith(
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      surname: null == surname
+          ? _value.surname
+          : surname // ignore: cast_nullable_to_non_nullable
+              as String,
+      aboutMe: null == aboutMe
+          ? _value.aboutMe
+          : aboutMe // ignore: cast_nullable_to_non_nullable
+              as String,
+      roles: null == roles
+          ? _value.roles
+          : roles // ignore: cast_nullable_to_non_nullable
+              as List<Roles>,
+      posts: null == posts
+          ? _value.posts
+          : posts // ignore: cast_nullable_to_non_nullable
+              as List<Post>,
+      comments: null == comments
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>,
+      areas: null == areas
+          ? _value.areas
+          : areas // ignore: cast_nullable_to_non_nullable
+              as List<AreaOfActivity>,
     ) as $Val);
   }
 }
@@ -66,7 +123,16 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       __$$UserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String username});
+  $Res call(
+      {String username,
+      String password,
+      String name,
+      String surname,
+      String aboutMe,
+      List<Roles> roles,
+      List<Post> posts,
+      List<Comment> comments,
+      List<AreaOfActivity> areas});
 }
 
 /// @nodoc
@@ -80,12 +146,52 @@ class __$$UserImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? username = null,
+    Object? password = null,
+    Object? name = null,
+    Object? surname = null,
+    Object? aboutMe = null,
+    Object? roles = null,
+    Object? posts = null,
+    Object? comments = null,
+    Object? areas = null,
   }) {
     return _then(_$UserImpl(
       username: null == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      password: null == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      surname: null == surname
+          ? _value.surname
+          : surname // ignore: cast_nullable_to_non_nullable
+              as String,
+      aboutMe: null == aboutMe
+          ? _value.aboutMe
+          : aboutMe // ignore: cast_nullable_to_non_nullable
+              as String,
+      roles: null == roles
+          ? _value._roles
+          : roles // ignore: cast_nullable_to_non_nullable
+              as List<Roles>,
+      posts: null == posts
+          ? _value._posts
+          : posts // ignore: cast_nullable_to_non_nullable
+              as List<Post>,
+      comments: null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<Comment>,
+      areas: null == areas
+          ? _value._areas
+          : areas // ignore: cast_nullable_to_non_nullable
+              as List<AreaOfActivity>,
     ));
   }
 }
@@ -93,17 +199,73 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserImpl implements _User {
-  _$UserImpl({required this.username});
+  _$UserImpl(
+      {required this.username,
+      required this.password,
+      required this.name,
+      required this.surname,
+      this.aboutMe = "",
+      required final List<Roles> roles,
+      final List<Post> posts = const [],
+      final List<Comment> comments = const [],
+      final List<AreaOfActivity> areas = const []})
+      : _roles = roles,
+        _posts = posts,
+        _comments = comments,
+        _areas = areas;
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
 
   @override
   final String username;
+  @override
+  final String password;
+  @override
+  final String name;
+  @override
+  final String surname;
+  @override
+  @JsonKey()
+  final String aboutMe;
+  final List<Roles> _roles;
+  @override
+  List<Roles> get roles {
+    if (_roles is EqualUnmodifiableListView) return _roles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_roles);
+  }
+
+  final List<Post> _posts;
+  @override
+  @JsonKey()
+  List<Post> get posts {
+    if (_posts is EqualUnmodifiableListView) return _posts;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_posts);
+  }
+
+  final List<Comment> _comments;
+  @override
+  @JsonKey()
+  List<Comment> get comments {
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_comments);
+  }
+
+  final List<AreaOfActivity> _areas;
+  @override
+  @JsonKey()
+  List<AreaOfActivity> get areas {
+    if (_areas is EqualUnmodifiableListView) return _areas;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_areas);
+  }
 
   @override
   String toString() {
-    return 'User(username: $username)';
+    return 'User(username: $username, password: $password, name: $name, surname: $surname, aboutMe: $aboutMe, roles: $roles, posts: $posts, comments: $comments, areas: $areas)';
   }
 
   @override
@@ -112,12 +274,31 @@ class _$UserImpl implements _User {
         (other.runtimeType == runtimeType &&
             other is _$UserImpl &&
             (identical(other.username, username) ||
-                other.username == username));
+                other.username == username) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.surname, surname) || other.surname == surname) &&
+            (identical(other.aboutMe, aboutMe) || other.aboutMe == aboutMe) &&
+            const DeepCollectionEquality().equals(other._roles, _roles) &&
+            const DeepCollectionEquality().equals(other._posts, _posts) &&
+            const DeepCollectionEquality().equals(other._comments, _comments) &&
+            const DeepCollectionEquality().equals(other._areas, _areas));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, username);
+  int get hashCode => Object.hash(
+      runtimeType,
+      username,
+      password,
+      name,
+      surname,
+      aboutMe,
+      const DeepCollectionEquality().hash(_roles),
+      const DeepCollectionEquality().hash(_posts),
+      const DeepCollectionEquality().hash(_comments),
+      const DeepCollectionEquality().hash(_areas));
 
   @JsonKey(ignore: true)
   @override
@@ -134,12 +315,37 @@ class _$UserImpl implements _User {
 }
 
 abstract class _User implements User {
-  factory _User({required final String username}) = _$UserImpl;
+  factory _User(
+      {required final String username,
+      required final String password,
+      required final String name,
+      required final String surname,
+      final String aboutMe,
+      required final List<Roles> roles,
+      final List<Post> posts,
+      final List<Comment> comments,
+      final List<AreaOfActivity> areas}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
   @override
   String get username;
+  @override
+  String get password;
+  @override
+  String get name;
+  @override
+  String get surname;
+  @override
+  String get aboutMe;
+  @override
+  List<Roles> get roles;
+  @override
+  List<Post> get posts;
+  @override
+  List<Comment> get comments;
+  @override
+  List<AreaOfActivity> get areas;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

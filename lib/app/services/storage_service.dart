@@ -10,8 +10,8 @@ class StorageService extends GetxService {
     return this;
   }
 
-  void writeRefresh(String refresh) async =>
+  Future<void> writeRefresh(String refresh) async =>
       await prefs.setString(StringName.refresh.name, refresh);
 
-  String? readRefresh() => prefs.getString(StringName.refresh.name);
+  String readRefresh() => prefs.getString(StringName.refresh.name)?? "";
 }

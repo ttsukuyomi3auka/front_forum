@@ -11,8 +11,7 @@ class AuthService extends GetxService {
   late Token _token;
 
   Future<AuthService> init() async {
-    var refresh = storageService.readRefresh() ?? "";
-    print(refresh);
+    var refresh = storageService.readRefresh();
     _token = Token(access: "", refresh: refresh);
     return this;
   }
@@ -34,7 +33,7 @@ class AuthService extends GetxService {
       var response =
           await _client.post(ApiEndpoints.login, data: user.toJsonLogin());
       _token = Token.fromJson(response.data);
-      storageService.writeRefresh(_token.refresh);
+      await storageService.writeRefresh(_token.refresh);
       if (response.statusCode == 200) return true;
     } catch (e) {
       printInfo(info: e.toString());
