@@ -20,7 +20,7 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
     };
 
 const _$ReviewStatusEnumMap = {
-  ReviewStatus.pending: 'pending',
-  ReviewStatus.rejected: 'rejected',
-  ReviewStatus.approved: 'approved',
+  ReviewStatus.pending: 'Pending',
+  ReviewStatus.rejected: 'Rejected',
+  ReviewStatus.approved: 'Approved',
 };

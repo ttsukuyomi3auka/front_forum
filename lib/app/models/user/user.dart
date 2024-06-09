@@ -1,9 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:front_forum/app/constants.dart';
-import 'package:front_forum/app/models/area/area.dart';
-import 'package:front_forum/app/models/comment/comment.dart';
-import 'package:front_forum/app/models/post/post.dart';
-
 part 'user.freezed.dart';
 part 'user.g.dart';
 

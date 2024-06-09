@@ -10,15 +10,19 @@ class ProfileView extends GetView<ProfileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('ProfileView'),
-          centerTitle: true,
-        ),
         body: Obx(() => Center(
                 child: controller.user.value.when(
               loading: () => const CircularProgressIndicator(),
               success: (User data) {
-                return Text(data.name);
+                return Column(
+                  children: [
+                    Text(data.username),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(data.name),
+                  ],
+                );
               },
               failed: (er, obj) => Text(
                 er.toString(),
