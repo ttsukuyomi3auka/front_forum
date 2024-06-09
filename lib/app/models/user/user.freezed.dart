@@ -25,10 +25,10 @@ mixin _$User {
   String get name => throw _privateConstructorUsedError;
   String get surname => throw _privateConstructorUsedError;
   String get aboutMe => throw _privateConstructorUsedError;
-  List<Roles> get roles => throw _privateConstructorUsedError;
-  List<Post> get posts => throw _privateConstructorUsedError;
-  List<Comment> get comments => throw _privateConstructorUsedError;
-  List<AreaOfActivity> get areas => throw _privateConstructorUsedError;
+  Roles get role => throw _privateConstructorUsedError;
+  List<String> get posts => throw _privateConstructorUsedError;
+  List<String> get comments => throw _privateConstructorUsedError;
+  List<String> get areas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,10 +46,10 @@ abstract class $UserCopyWith<$Res> {
       String name,
       String surname,
       String aboutMe,
-      List<Roles> roles,
-      List<Post> posts,
-      List<Comment> comments,
-      List<AreaOfActivity> areas});
+      Roles role,
+      List<String> posts,
+      List<String> comments,
+      List<String> areas});
 }
 
 /// @nodoc
@@ -70,7 +70,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? name = null,
     Object? surname = null,
     Object? aboutMe = null,
-    Object? roles = null,
+    Object? role = null,
     Object? posts = null,
     Object? comments = null,
     Object? areas = null,
@@ -96,22 +96,22 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.aboutMe
           : aboutMe // ignore: cast_nullable_to_non_nullable
               as String,
-      roles: null == roles
-          ? _value.roles
-          : roles // ignore: cast_nullable_to_non_nullable
-              as List<Roles>,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as Roles,
       posts: null == posts
           ? _value.posts
           : posts // ignore: cast_nullable_to_non_nullable
-              as List<Post>,
+              as List<String>,
       comments: null == comments
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<Comment>,
+              as List<String>,
       areas: null == areas
           ? _value.areas
           : areas // ignore: cast_nullable_to_non_nullable
-              as List<AreaOfActivity>,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -129,10 +129,10 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       String name,
       String surname,
       String aboutMe,
-      List<Roles> roles,
-      List<Post> posts,
-      List<Comment> comments,
-      List<AreaOfActivity> areas});
+      Roles role,
+      List<String> posts,
+      List<String> comments,
+      List<String> areas});
 }
 
 /// @nodoc
@@ -150,7 +150,7 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? name = null,
     Object? surname = null,
     Object? aboutMe = null,
-    Object? roles = null,
+    Object? role = null,
     Object? posts = null,
     Object? comments = null,
     Object? areas = null,
@@ -176,22 +176,22 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.aboutMe
           : aboutMe // ignore: cast_nullable_to_non_nullable
               as String,
-      roles: null == roles
-          ? _value._roles
-          : roles // ignore: cast_nullable_to_non_nullable
-              as List<Roles>,
+      role: null == role
+          ? _value.role
+          : role // ignore: cast_nullable_to_non_nullable
+              as Roles,
       posts: null == posts
           ? _value._posts
           : posts // ignore: cast_nullable_to_non_nullable
-              as List<Post>,
+              as List<String>,
       comments: null == comments
           ? _value._comments
           : comments // ignore: cast_nullable_to_non_nullable
-              as List<Comment>,
+              as List<String>,
       areas: null == areas
           ? _value._areas
           : areas // ignore: cast_nullable_to_non_nullable
-              as List<AreaOfActivity>,
+              as List<String>,
     ));
   }
 }
@@ -205,12 +205,11 @@ class _$UserImpl implements _User {
       required this.name,
       required this.surname,
       this.aboutMe = "",
-      required final List<Roles> roles,
-      final List<Post> posts = const [],
-      final List<Comment> comments = const [],
-      final List<AreaOfActivity> areas = const []})
-      : _roles = roles,
-        _posts = posts,
+      required this.role,
+      final List<String> posts = const [],
+      final List<String> comments = const [],
+      final List<String> areas = const []})
+      : _posts = posts,
         _comments = comments,
         _areas = areas;
 
@@ -228,36 +227,30 @@ class _$UserImpl implements _User {
   @override
   @JsonKey()
   final String aboutMe;
-  final List<Roles> _roles;
   @override
-  List<Roles> get roles {
-    if (_roles is EqualUnmodifiableListView) return _roles;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_roles);
-  }
-
-  final List<Post> _posts;
+  final Roles role;
+  final List<String> _posts;
   @override
   @JsonKey()
-  List<Post> get posts {
+  List<String> get posts {
     if (_posts is EqualUnmodifiableListView) return _posts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_posts);
   }
 
-  final List<Comment> _comments;
+  final List<String> _comments;
   @override
   @JsonKey()
-  List<Comment> get comments {
+  List<String> get comments {
     if (_comments is EqualUnmodifiableListView) return _comments;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_comments);
   }
 
-  final List<AreaOfActivity> _areas;
+  final List<String> _areas;
   @override
   @JsonKey()
-  List<AreaOfActivity> get areas {
+  List<String> get areas {
     if (_areas is EqualUnmodifiableListView) return _areas;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_areas);
@@ -265,7 +258,7 @@ class _$UserImpl implements _User {
 
   @override
   String toString() {
-    return 'User(username: $username, password: $password, name: $name, surname: $surname, aboutMe: $aboutMe, roles: $roles, posts: $posts, comments: $comments, areas: $areas)';
+    return 'User(username: $username, password: $password, name: $name, surname: $surname, aboutMe: $aboutMe, role: $role, posts: $posts, comments: $comments, areas: $areas)';
   }
 
   @override
@@ -280,7 +273,7 @@ class _$UserImpl implements _User {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.surname, surname) || other.surname == surname) &&
             (identical(other.aboutMe, aboutMe) || other.aboutMe == aboutMe) &&
-            const DeepCollectionEquality().equals(other._roles, _roles) &&
+            (identical(other.role, role) || other.role == role) &&
             const DeepCollectionEquality().equals(other._posts, _posts) &&
             const DeepCollectionEquality().equals(other._comments, _comments) &&
             const DeepCollectionEquality().equals(other._areas, _areas));
@@ -295,7 +288,7 @@ class _$UserImpl implements _User {
       name,
       surname,
       aboutMe,
-      const DeepCollectionEquality().hash(_roles),
+      role,
       const DeepCollectionEquality().hash(_posts),
       const DeepCollectionEquality().hash(_comments),
       const DeepCollectionEquality().hash(_areas));
@@ -321,10 +314,10 @@ abstract class _User implements User {
       required final String name,
       required final String surname,
       final String aboutMe,
-      required final List<Roles> roles,
-      final List<Post> posts,
-      final List<Comment> comments,
-      final List<AreaOfActivity> areas}) = _$UserImpl;
+      required final Roles role,
+      final List<String> posts,
+      final List<String> comments,
+      final List<String> areas}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -339,13 +332,13 @@ abstract class _User implements User {
   @override
   String get aboutMe;
   @override
-  List<Roles> get roles;
+  Roles get role;
   @override
-  List<Post> get posts;
+  List<String> get posts;
   @override
-  List<Comment> get comments;
+  List<String> get comments;
   @override
-  List<AreaOfActivity> get areas;
+  List<String> get areas;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

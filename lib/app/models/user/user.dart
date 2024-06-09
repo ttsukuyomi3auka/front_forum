@@ -15,10 +15,10 @@ class User with _$User {
     required String name,
     required String surname,
     @Default("") String aboutMe,
-    required List<Roles> roles,
-    @Default([]) List<Post> posts,
-    @Default([]) List<Comment> comments,
-    @Default([]) List<AreaOfActivity> areas,
+    required Roles role,
+    @Default([]) List<String> posts,
+    @Default([]) List<String> comments,
+    @Default([]) List<String> areas,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

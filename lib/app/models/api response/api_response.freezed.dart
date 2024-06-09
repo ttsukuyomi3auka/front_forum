@@ -20,21 +20,21 @@ mixin _$ApiResponse<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message, Object? exception) failed,
+    required TResult Function(String message, Object? error) failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message, Object? exception)? failed,
+    TResult? Function(String message, Object? error)? failed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message, Object? exception)? failed,
+    TResult Function(String message, Object? error)? failed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message, Object? exception) failed,
+    required TResult Function(String message, Object? error) failed,
   }) {
     return loading();
   }
@@ -130,7 +130,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message, Object? exception)? failed,
+    TResult? Function(String message, Object? error)? failed,
   }) {
     return loading?.call();
   }
@@ -140,7 +140,7 @@ class _$LoadingImpl<T> implements _Loading<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message, Object? exception)? failed,
+    TResult Function(String message, Object? error)? failed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -255,7 +255,7 @@ class _$SuccessImpl<T> implements _Success<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message, Object? exception) failed,
+    required TResult Function(String message, Object? error) failed,
   }) {
     return success(data);
   }
@@ -265,7 +265,7 @@ class _$SuccessImpl<T> implements _Success<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message, Object? exception)? failed,
+    TResult? Function(String message, Object? error)? failed,
   }) {
     return success?.call(data);
   }
@@ -275,7 +275,7 @@ class _$SuccessImpl<T> implements _Success<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message, Object? exception)? failed,
+    TResult Function(String message, Object? error)? failed,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -334,7 +334,7 @@ abstract class _$$FailedImplCopyWith<T, $Res> {
           _$FailedImpl<T> value, $Res Function(_$FailedImpl<T>) then) =
       __$$FailedImplCopyWithImpl<T, $Res>;
   @useResult
-  $Res call({String message, Object? exception});
+  $Res call({String message, Object? error});
 }
 
 /// @nodoc
@@ -349,14 +349,14 @@ class __$$FailedImplCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object? message = null,
-    Object? exception = freezed,
+    Object? error = freezed,
   }) {
     return _then(_$FailedImpl<T>(
       null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      freezed == exception ? _value.exception : exception,
+      freezed == error ? _value.error : error,
     ));
   }
 }
@@ -364,16 +364,16 @@ class __$$FailedImplCopyWithImpl<T, $Res>
 /// @nodoc
 
 class _$FailedImpl<T> implements _Failed<T> {
-  _$FailedImpl(this.message, this.exception);
+  _$FailedImpl(this.message, this.error);
 
   @override
   final String message;
   @override
-  final Object? exception;
+  final Object? error;
 
   @override
   String toString() {
-    return 'ApiResponse<$T>.failed(message: $message, exception: $exception)';
+    return 'ApiResponse<$T>.failed(message: $message, error: $error)';
   }
 
   @override
@@ -382,12 +382,12 @@ class _$FailedImpl<T> implements _Failed<T> {
         (other.runtimeType == runtimeType &&
             other is _$FailedImpl<T> &&
             (identical(other.message, message) || other.message == message) &&
-            const DeepCollectionEquality().equals(other.exception, exception));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, message, const DeepCollectionEquality().hash(exception));
+      runtimeType, message, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -400,9 +400,9 @@ class _$FailedImpl<T> implements _Failed<T> {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(T data) success,
-    required TResult Function(String message, Object? exception) failed,
+    required TResult Function(String message, Object? error) failed,
   }) {
-    return failed(message, exception);
+    return failed(message, error);
   }
 
   @override
@@ -410,9 +410,9 @@ class _$FailedImpl<T> implements _Failed<T> {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(T data)? success,
-    TResult? Function(String message, Object? exception)? failed,
+    TResult? Function(String message, Object? error)? failed,
   }) {
-    return failed?.call(message, exception);
+    return failed?.call(message, error);
   }
 
   @override
@@ -420,11 +420,11 @@ class _$FailedImpl<T> implements _Failed<T> {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(T data)? success,
-    TResult Function(String message, Object? exception)? failed,
+    TResult Function(String message, Object? error)? failed,
     required TResult orElse(),
   }) {
     if (failed != null) {
-      return failed(message, exception);
+      return failed(message, error);
     }
     return orElse();
   }
@@ -465,11 +465,10 @@ class _$FailedImpl<T> implements _Failed<T> {
 }
 
 abstract class _Failed<T> implements ApiResponse<T> {
-  factory _Failed(final String message, final Object? exception) =
-      _$FailedImpl<T>;
+  factory _Failed(final String message, final Object? error) = _$FailedImpl<T>;
 
   String get message;
-  Object? get exception;
+  Object? get error;
   @JsonKey(ignore: true)
   _$$FailedImplCopyWith<T, _$FailedImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;

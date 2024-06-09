@@ -22,6 +22,8 @@ enum StringName {
 abstract class ApiEndpoints {
   static const String registration = "/auth/registration";
   static const String login = "/auth/login";
+  static const String refresh = "/auth/refresh";
+  static const String getUserById = "/user/";
 }
 
 class ShortUser {

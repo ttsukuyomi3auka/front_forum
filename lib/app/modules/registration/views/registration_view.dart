@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
-
 import 'package:get/get.dart';
-import 'package:hovering/hovering.dart';
-
 import '../controllers/registration_controller.dart';
 
 class RegistrationView extends GetView<RegistrationController> {
@@ -21,7 +17,7 @@ class RegistrationView extends GetView<RegistrationController> {
             child: Container(
               width: 500,
               decoration: BoxDecoration(
-                color: Colors.white, 
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(

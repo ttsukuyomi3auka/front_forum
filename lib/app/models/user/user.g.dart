@@ -12,21 +12,17 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
       name: json['name'] as String,
       surname: json['surname'] as String,
       aboutMe: json['aboutMe'] as String? ?? "",
-      roles: (json['roles'] as List<dynamic>)
-          .map((e) => $enumDecode(_$RolesEnumMap, e))
-          .toList(),
-      posts: (json['posts'] as List<dynamic>?)
-              ?.map((e) => Post.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      role: $enumDecode(_$RolesEnumMap, json['role']),
+      posts:
+          (json['posts'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
       comments: (json['comments'] as List<dynamic>?)
-              ?.map((e) => Comment.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => e as String)
               .toList() ??
           const [],
-      areas: (json['areas'] as List<dynamic>?)
-              ?.map((e) => AreaOfActivity.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+      areas:
+          (json['areas'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              const [],
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
@@ -36,7 +32,7 @@ Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>
       'name': instance.name,
       'surname': instance.surname,
       'aboutMe': instance.aboutMe,
-      'roles': instance.roles.map((e) => _$RolesEnumMap[e]!).toList(),
+      'role': _$RolesEnumMap[instance.role]!,
       'posts': instance.posts,
       'comments': instance.comments,
       'areas': instance.areas,

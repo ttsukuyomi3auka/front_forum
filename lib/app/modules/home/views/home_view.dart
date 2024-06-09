@@ -15,11 +15,20 @@ class HomeView extends GetView<HomeController> {
         centerTitle: true,
       ),
       body: Center(
-          child: ElevatedButton(
+          child: Column(
+        children: [
+          ElevatedButton(
               onPressed: () {
                 Get.offAndToNamed(Routes.LOGIN);
               },
-              child: const Text("back"))),
+              child: const Text("back")),
+          ElevatedButton(
+              onPressed: () {
+                Get.offAndToNamed(Routes.PROFILE);
+              },
+              child: const Text("PROFILE"))
+        ],
+      )),
     );
   }
 }
