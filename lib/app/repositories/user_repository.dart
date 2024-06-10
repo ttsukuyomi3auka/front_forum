@@ -1,7 +1,6 @@
 import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/models/api%20response/api_response.dart';
 import 'package:front_forum/app/models/user/user.dart';
-import 'package:front_forum/app/services/auth_service.dart';
 import 'package:front_forum/app/services/network_service.dart';
 
 typedef UserResponse = ApiResponse<User>;

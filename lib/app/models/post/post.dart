@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/models/area/area.dart';
-import 'package:front_forum/app/models/comment/comment.dart';
 import 'package:front_forum/app/models/user/user.dart';
+import 'package:front_forum/app/repositories/area_repository.dart';
 import 'package:front_forum/app/repositories/user_repository.dart';
 import 'package:get/get.dart';
 
@@ -33,5 +33,20 @@ class Post with _$Post {
       success: (user) => user,
       failed: (message, exception) => null,
     );
+  }
+
+  List<AreaOfActivity> get getAreas {
+    final areaRepository = Get.find<AreaRepository>();
+    List<AreaOfActivity> temp = [];
+    // ignore: avoid_function_literals_in_foreach_calls
+    areas.forEach((element) async {
+      var response = await areaRepository.getAreaById(element);
+      response.when(
+        loading: () => [],
+        success: (area) => temp.add(area),
+        failed: (message, exception) => [],
+      );
+    });
+    return temp;
   }
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';

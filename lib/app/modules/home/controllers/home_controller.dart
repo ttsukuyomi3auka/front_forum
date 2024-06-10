@@ -1,23 +1,37 @@
 import 'package:front_forum/app/models/post/post.dart';
+import 'package:front_forum/app/models/user/user.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
+import 'package:front_forum/app/repositories/user_repository.dart';
 import 'package:front_forum/app/services/auth_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   final PostRepository postRepository;
-  final Rx<PostResponse> posts = PostResponse.loading().obs;
+  final UserRepository userRepository;
   final Rx<PostResponse> newPosts = PostResponse.loading().obs;
   final Rx<PostResponse> forYouPosts = PostResponse.loading().obs;
   final Rx<PostResponse> popularPosts = PostResponse.loading().obs;
-  HomeController(this.postRepository);
+  Rxn<User> currentUser = Rxn<User>();
+  HomeController(this.postRepository, this.userRepository);
 
   @override
   void onInit() {
-    fetchUser();
+    getUserData();
+    getPosts();
     super.onInit();
   }
 
-  void fetchUser() async {
+  void getUserData() async {
+    if (AuthService.to.isLoggedIn()) {
+      var response = await userRepository.getUserById(AuthService.to.userId);
+      response.when(
+          loading: () => {},
+          success: (User data) => {currentUser.value = data},
+          failed: (er, ex) => {});
+    }
+  }
+
+  void getPosts() async {
     newPosts.value = PostResponse.loading();
     var response = await postRepository.getAll();
 
