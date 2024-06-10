@@ -11,9 +11,8 @@ class UserRepository {
 
   UserRepository(this.api);
 
-  Future<ApiResponse<User>> getUserById() async {
-    var response =
-        await api.get('${ApiEndpoints.getUserById}${AuthService.to.userId}');
+  Future<ApiResponse<User>> getUserById(String userId) async {
+    var response = await api.get('${ApiEndpoints.getUserById}$userId');
     return response.when(
       loading: () => UserResponse.loading(),
       success: (data) {

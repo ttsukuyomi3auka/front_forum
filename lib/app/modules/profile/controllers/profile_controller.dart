@@ -1,4 +1,5 @@
 import 'package:front_forum/app/repositories/user_repository.dart';
+import 'package:front_forum/app/services/auth_service.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
@@ -15,6 +16,6 @@ class ProfileController extends GetxController {
 
   void fetchUser() async {
     user.value = UserResponse.loading();
-    user.value = await userRepository.getUserById();
+    user.value = await userRepository.getUserById(AuthService.to.userId);
   }
 }

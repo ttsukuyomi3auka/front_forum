@@ -23,6 +23,11 @@ mixin _$Post {
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   ReviewStatus get status => throw _privateConstructorUsedError;
+  String get author => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
+  int get likes => throw _privateConstructorUsedError;
+  List<String> get comments => throw _privateConstructorUsedError;
+  List<String> get areas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +39,15 @@ abstract class $PostCopyWith<$Res> {
   factory $PostCopyWith(Post value, $Res Function(Post) then) =
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
-  $Res call({String title, String description, ReviewStatus status});
+  $Res call(
+      {String title,
+      String description,
+      ReviewStatus status,
+      String author,
+      DateTime date,
+      int likes,
+      List<String> comments,
+      List<String> areas});
 }
 
 /// @nodoc
@@ -53,6 +66,11 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? title = null,
     Object? description = null,
     Object? status = null,
+    Object? author = null,
+    Object? date = null,
+    Object? likes = null,
+    Object? comments = null,
+    Object? areas = null,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -67,6 +85,26 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ReviewStatus,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      likes: null == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as int,
+      comments: null == comments
+          ? _value.comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      areas: null == areas
+          ? _value.areas
+          : areas // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -78,7 +116,15 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       __$$PostImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title, String description, ReviewStatus status});
+  $Res call(
+      {String title,
+      String description,
+      ReviewStatus status,
+      String author,
+      DateTime date,
+      int likes,
+      List<String> comments,
+      List<String> areas});
 }
 
 /// @nodoc
@@ -94,6 +140,11 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? title = null,
     Object? description = null,
     Object? status = null,
+    Object? author = null,
+    Object? date = null,
+    Object? likes = null,
+    Object? comments = null,
+    Object? areas = null,
   }) {
     return _then(_$PostImpl(
       title: null == title
@@ -108,15 +159,45 @@ class __$$PostImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as ReviewStatus,
+      author: null == author
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      likes: null == likes
+          ? _value.likes
+          : likes // ignore: cast_nullable_to_non_nullable
+              as int,
+      comments: null == comments
+          ? _value._comments
+          : comments // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      areas: null == areas
+          ? _value._areas
+          : areas // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PostImpl implements _Post {
+class _$PostImpl extends _Post {
   _$PostImpl(
-      {required this.title, required this.description, required this.status});
+      {required this.title,
+      required this.description,
+      required this.status,
+      required this.author,
+      required this.date,
+      required this.likes,
+      required final List<String> comments,
+      required final List<String> areas})
+      : _comments = comments,
+        _areas = areas,
+        super._();
 
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
@@ -127,10 +208,31 @@ class _$PostImpl implements _Post {
   final String description;
   @override
   final ReviewStatus status;
+  @override
+  final String author;
+  @override
+  final DateTime date;
+  @override
+  final int likes;
+  final List<String> _comments;
+  @override
+  List<String> get comments {
+    if (_comments is EqualUnmodifiableListView) return _comments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_comments);
+  }
+
+  final List<String> _areas;
+  @override
+  List<String> get areas {
+    if (_areas is EqualUnmodifiableListView) return _areas;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_areas);
+  }
 
   @override
   String toString() {
-    return 'Post(title: $title, description: $description, status: $status)';
+    return 'Post(title: $title, description: $description, status: $status, author: $author, date: $date, likes: $likes, comments: $comments, areas: $areas)';
   }
 
   @override
@@ -141,12 +243,26 @@ class _$PostImpl implements _Post {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.status, status) || other.status == status));
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.author, author) || other.author == author) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.likes, likes) || other.likes == likes) &&
+            const DeepCollectionEquality().equals(other._comments, _comments) &&
+            const DeepCollectionEquality().equals(other._areas, _areas));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title, description, status);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      description,
+      status,
+      author,
+      date,
+      likes,
+      const DeepCollectionEquality().hash(_comments),
+      const DeepCollectionEquality().hash(_areas));
 
   @JsonKey(ignore: true)
   @override
@@ -162,11 +278,17 @@ class _$PostImpl implements _Post {
   }
 }
 
-abstract class _Post implements Post {
+abstract class _Post extends Post {
   factory _Post(
       {required final String title,
       required final String description,
-      required final ReviewStatus status}) = _$PostImpl;
+      required final ReviewStatus status,
+      required final String author,
+      required final DateTime date,
+      required final int likes,
+      required final List<String> comments,
+      required final List<String> areas}) = _$PostImpl;
+  _Post._() : super._();
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
@@ -176,6 +298,16 @@ abstract class _Post implements Post {
   String get description;
   @override
   ReviewStatus get status;
+  @override
+  String get author;
+  @override
+  DateTime get date;
+  @override
+  int get likes;
+  @override
+  List<String> get comments;
+  @override
+  List<String> get areas;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

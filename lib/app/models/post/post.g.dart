@@ -10,6 +10,12 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       title: json['title'] as String,
       description: json['description'] as String,
       status: $enumDecode(_$ReviewStatusEnumMap, json['status']),
+      author: json['author'] as String,
+      date: DateTime.parse(json['date'] as String),
+      likes: (json['likes'] as num).toInt(),
+      comments:
+          (json['comments'] as List<dynamic>).map((e) => e as String).toList(),
+      areas: (json['areas'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
@@ -17,6 +23,11 @@ Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
       'title': instance.title,
       'description': instance.description,
       'status': _$ReviewStatusEnumMap[instance.status]!,
+      'author': instance.author,
+      'date': instance.date.toIso8601String(),
+      'likes': instance.likes,
+      'comments': instance.comments,
+      'areas': instance.areas,
     };
 
 const _$ReviewStatusEnumMap = {

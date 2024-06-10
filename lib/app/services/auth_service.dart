@@ -9,7 +9,7 @@ class AuthService extends GetxService {
   final Dio _client = Dio(BaseOptions(baseUrl: baseUrl));
   final StorageService storageService = Get.find();
   late Token _token;
-  late String userId;
+  String userId = "";
 
   static AuthService get to => Get.find();
   Token get token => _token;
@@ -66,6 +66,14 @@ class AuthService extends GetxService {
       }
     } catch (e) {
       printInfo(info: e.toString());
+      return false;
+    }
+  }
+
+  bool isLoggedIn() {
+    if (token.access != "") {
+      return true;
+    } else {
       return false;
     }
   }

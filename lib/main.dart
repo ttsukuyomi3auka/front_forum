@@ -16,7 +16,7 @@ void main() async {
           selectionColor: Colors.orange[50],
           selectionHandleColor: Colors.orange[50]),
     ),
-    initialRoute: Routes.LOGIN,
+    initialRoute: Routes.HOME,
     getPages: AppPages.routes,
   ));
 }
