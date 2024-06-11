@@ -25,6 +25,7 @@ abstract class ApiEndpoints {
   static const String refresh = "/auth/refresh";
   static const String getUserById = "/user/";
   static const String getApprovedPost = "/post/";
+  static const String createPost = "/post/create";
   static const String getArea = "/area/";
 }
 
@@ -53,6 +54,26 @@ class ShortUser {
     return {
       'username': username,
       'password': password,
+    };
+  }
+}
+
+class ShortPost {
+  String title;
+  String description;
+  List<String> areas;
+
+  ShortPost({
+    required this.title,
+    required this.description,
+    required this.areas,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'description': description,
+      'areas': areas,
     };
   }
 }

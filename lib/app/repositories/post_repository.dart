@@ -23,4 +23,9 @@ class PostRepository {
         failed: (message, exception) =>
             PostResponse.failed(message, exception));
   }
+
+  Future<bool> createPost(ShortPost data) async {
+    var response = await api.create(ApiEndpoints.createPost, data.toJson());
+    return response;
+  }
 }

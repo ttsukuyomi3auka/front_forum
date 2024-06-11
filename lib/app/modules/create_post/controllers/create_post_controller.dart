@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/models/area/area.dart';
 import 'package:front_forum/app/repositories/area_repository.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
@@ -10,7 +11,6 @@ class CreatePostController extends GetxController {
   final String username;
   TextEditingController title = TextEditingController();
   TextEditingController description = TextEditingController();
-  List<String> idAreas = [];
   var areas = <AreaOfActivity>[].obs;
   RxList<String> selectedAreas = <String>[].obs;
 
@@ -30,11 +30,27 @@ class CreatePostController extends GetxController {
         failed: (er, mes) => {});
   }
 
+  void createPost() async {
+    ShortPost data = ShortPost(
+        title: title.text, description: description.text, areas: selectedAreas);
+    if (await postRepository.createPost(data)) {
+      Get.snackbar("Успешно", "Пост добавлен ожидайте результатов модерации");
+      clearLocalData();
+    } else {
+      Get.snackbar("Ошибка",
+          "Обратите внимание что, все поля должны быть заполнены в том числе и сферы деятельности");
+    }
+  }
+
   @override
   void onClose() {
-    title.dispose();
-    description.dispose();
-    selectedAreas.clear();
+    clearLocalData();
     super.onClose();
+  }
+
+  void clearLocalData() {
+    title.clear();
+    description.clear();
+    selectedAreas.clear();
   }
 }

@@ -5,10 +5,8 @@ import 'package:front_forum/app/models/user/user.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
