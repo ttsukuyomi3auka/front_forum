@@ -23,7 +23,8 @@ class RegistrationController extends GetxController {
     if (await authService.registration(user)) {
       Get.offAndToNamed(Routes.LOGIN);
     } else {
-      Get.snackbar("Error", "не удалось зарегестрироваться");
+      Get.snackbar("Ошибка", "Не удалось зарегестрироваться");
+      
     }
   }
 

@@ -7,6 +7,7 @@ part of 'post.dart';
 // **************************************************************************
 
 _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
+      id: json['_id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
       status: $enumDecode(_$ReviewStatusEnumMap, json['status']),
@@ -20,6 +21,7 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>
     <String, dynamic>{
+      '_id': instance.id,
       'title': instance.title,
       'description': instance.description,
       'status': _$ReviewStatusEnumMap[instance.status]!,

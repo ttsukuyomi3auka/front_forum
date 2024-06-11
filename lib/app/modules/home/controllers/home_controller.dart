@@ -1,7 +1,9 @@
+import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/models/post/post.dart';
 import 'package:front_forum/app/models/user/user.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:front_forum/app/repositories/user_repository.dart';
+import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';
 import 'package:get/get.dart';
 
@@ -54,5 +56,17 @@ class HomeController extends GetxController {
         popularPosts.value = PostResponse.failed(message, exception);
       },
     );
+  }
+
+  void goToCreatePost() {
+    if (!AuthService.to.isLoggedIn()) {
+      Get.snackbar("Ошибка", "Войдите в аккаунт");
+      return;
+    }
+    if (currentUser.value?.role == Roles.baned) {
+      Get.snackbar("Вы забанены", "У вас не возможности написать пост");
+      return;
+    }
+    Get.offAndToNamed(Routes.CREATE_POST);
   }
 }

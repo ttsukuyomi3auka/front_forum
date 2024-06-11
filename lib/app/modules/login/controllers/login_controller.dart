@@ -19,7 +19,7 @@ class LoginController extends GetxController {
       Get.offAndToNamed(Routes.HOME);
     }
     else {
-      Get.snackbar("Error", "Не удалось войти");
+      Get.snackbar("Ошибка", "Не удалось войти");
     }
   }
 }

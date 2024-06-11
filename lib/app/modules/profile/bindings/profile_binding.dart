@@ -7,7 +7,10 @@ class ProfileBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ProfileController>(
-      () => ProfileController(UserRepository(Get.find())),
+      () => ProfileController(
+        UserRepository(Get.find()),
+        Get.parameters['userId']!,
+      ),
     );
   }
 }

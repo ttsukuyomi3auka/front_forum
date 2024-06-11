@@ -20,6 +20,8 @@ Post _$PostFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Post {
+  @JsonKey(name: '_id')
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   ReviewStatus get status => throw _privateConstructorUsedError;
@@ -40,7 +42,8 @@ abstract class $PostCopyWith<$Res> {
       _$PostCopyWithImpl<$Res, Post>;
   @useResult
   $Res call(
-      {String title,
+      {@JsonKey(name: '_id') String id,
+      String title,
       String description,
       ReviewStatus status,
       String author,
@@ -63,6 +66,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? status = null,
@@ -73,6 +77,10 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
     Object? areas = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -117,7 +125,8 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String title,
+      {@JsonKey(name: '_id') String id,
+      String title,
       String description,
       ReviewStatus status,
       String author,
@@ -137,6 +146,7 @@ class __$$PostImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? status = null,
@@ -147,6 +157,10 @@ class __$$PostImplCopyWithImpl<$Res>
     Object? areas = null,
   }) {
     return _then(_$PostImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -187,7 +201,8 @@ class __$$PostImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostImpl extends _Post {
   _$PostImpl(
-      {required this.title,
+      {@JsonKey(name: '_id') required this.id,
+      required this.title,
       required this.description,
       required this.status,
       required this.author,
@@ -202,6 +217,9 @@ class _$PostImpl extends _Post {
   factory _$PostImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostImplFromJson(json);
 
+  @override
+  @JsonKey(name: '_id')
+  final String id;
   @override
   final String title;
   @override
@@ -232,7 +250,7 @@ class _$PostImpl extends _Post {
 
   @override
   String toString() {
-    return 'Post(title: $title, description: $description, status: $status, author: $author, date: $date, likes: $likes, comments: $comments, areas: $areas)';
+    return 'Post(id: $id, title: $title, description: $description, status: $status, author: $author, date: $date, likes: $likes, comments: $comments, areas: $areas)';
   }
 
   @override
@@ -240,6 +258,7 @@ class _$PostImpl extends _Post {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PostImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -255,6 +274,7 @@ class _$PostImpl extends _Post {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       title,
       description,
       status,
@@ -280,7 +300,8 @@ class _$PostImpl extends _Post {
 
 abstract class _Post extends Post {
   factory _Post(
-      {required final String title,
+      {@JsonKey(name: '_id') required final String id,
+      required final String title,
       required final String description,
       required final ReviewStatus status,
       required final String author,
@@ -292,6 +313,9 @@ abstract class _Post extends Post {
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
 
+  @override
+  @JsonKey(name: '_id')
+  String get id;
   @override
   String get title;
   @override

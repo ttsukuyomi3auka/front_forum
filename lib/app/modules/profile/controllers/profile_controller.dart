@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
   final UserRepository userRepository;
+  final String userId;
   final Rx<UserResponse> user = UserResponse.loading().obs;
 
-  ProfileController(this.userRepository);
+  ProfileController(this.userRepository, this.userId);
 
   @override
   void onInit() {
@@ -16,6 +17,6 @@ class ProfileController extends GetxController {
 
   void fetchUser() async {
     user.value = UserResponse.loading();
-    user.value = await userRepository.getUserById(AuthService.to.userId);
+    user.value = await userRepository.getUserById(userId);
   }
 }

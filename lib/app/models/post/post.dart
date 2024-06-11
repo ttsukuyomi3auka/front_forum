@@ -13,6 +13,7 @@ part 'post.g.dart';
 class Post with _$Post {
   Post._();
   factory Post({
+    @JsonKey(name: '_id') required String id,
     required String title,
     required String description,
     required ReviewStatus status,
