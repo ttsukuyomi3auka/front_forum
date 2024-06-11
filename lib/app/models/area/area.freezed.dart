@@ -20,6 +20,8 @@ AreaOfActivity _$AreaOfActivityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AreaOfActivity {
+  @JsonKey(name: "_id")
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +36,7 @@ abstract class $AreaOfActivityCopyWith<$Res> {
           AreaOfActivity value, $Res Function(AreaOfActivity) then) =
       _$AreaOfActivityCopyWithImpl<$Res, AreaOfActivity>;
   @useResult
-  $Res call({String title});
+  $Res call({@JsonKey(name: "_id") String id, String title});
 }
 
 /// @nodoc
@@ -50,9 +52,14 @@ class _$AreaOfActivityCopyWithImpl<$Res, $Val extends AreaOfActivity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -69,7 +76,7 @@ abstract class _$$AreaOfActivityImplCopyWith<$Res>
       __$$AreaOfActivityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String title});
+  $Res call({@JsonKey(name: "_id") String id, String title});
 }
 
 /// @nodoc
@@ -83,9 +90,14 @@ class __$$AreaOfActivityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
   }) {
     return _then(_$AreaOfActivityImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -97,17 +109,21 @@ class __$$AreaOfActivityImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AreaOfActivityImpl implements _AreaOfActivity {
-  _$AreaOfActivityImpl({required this.title});
+  _$AreaOfActivityImpl(
+      {@JsonKey(name: "_id") required this.id, required this.title});
 
   factory _$AreaOfActivityImpl.fromJson(Map<String, dynamic> json) =>
       _$$AreaOfActivityImplFromJson(json);
 
   @override
+  @JsonKey(name: "_id")
+  final String id;
+  @override
   final String title;
 
   @override
   String toString() {
-    return 'AreaOfActivity(title: $title)';
+    return 'AreaOfActivity(id: $id, title: $title)';
   }
 
   @override
@@ -115,12 +131,13 @@ class _$AreaOfActivityImpl implements _AreaOfActivity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AreaOfActivityImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, title);
+  int get hashCode => Object.hash(runtimeType, id, title);
 
   @JsonKey(ignore: true)
   @override
@@ -138,11 +155,16 @@ class _$AreaOfActivityImpl implements _AreaOfActivity {
 }
 
 abstract class _AreaOfActivity implements AreaOfActivity {
-  factory _AreaOfActivity({required final String title}) = _$AreaOfActivityImpl;
+  factory _AreaOfActivity(
+      {@JsonKey(name: "_id") required final String id,
+      required final String title}) = _$AreaOfActivityImpl;
 
   factory _AreaOfActivity.fromJson(Map<String, dynamic> json) =
       _$AreaOfActivityImpl.fromJson;
 
+  @override
+  @JsonKey(name: "_id")
+  String get id;
   @override
   String get title;
   @override

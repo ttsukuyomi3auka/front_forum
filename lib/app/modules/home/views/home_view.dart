@@ -89,7 +89,8 @@ class HomeView extends GetView<HomeController> {
                       if (user != null) {
                         return ElevatedButton(
                           onPressed: () {
-                            Get.offAndToNamed(Routes.PROFILE);
+                            Get.offAndToNamed(Routes.PROFILE,
+                                parameters: {"userId": AuthService.to.userId});
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,

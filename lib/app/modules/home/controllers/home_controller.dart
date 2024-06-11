@@ -67,6 +67,7 @@ class HomeController extends GetxController {
       Get.snackbar("Вы забанены", "У вас не возможности написать пост");
       return;
     }
-    Get.offAndToNamed(Routes.CREATE_POST);
+    Get.offAndToNamed(Routes.CREATE_POST,
+        parameters: {"username": currentUser.value!.username});
   }
 }

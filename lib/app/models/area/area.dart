@@ -6,6 +6,7 @@ part 'area.g.dart';
 @freezed
 class AreaOfActivity with _$AreaOfActivity {
   factory AreaOfActivity({
+    @JsonKey(name: "_id") required String id,
     required String title,
   }) = _AreaOfActivity;
 
