@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/models/post/post.dart';
 import 'package:front_forum/app/models/user/user.dart';
+import 'package:front_forum/app/modules/home/views/read_post_widgets.dart';
+import 'package:front_forum/app/modules/widgets/custom_app_bar.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';
@@ -16,121 +18,7 @@ class HomeView extends GetView<HomeController> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Смысл'),
-          actions: [
-            Row(
-              children: [
-                Obx(() {
-                  if (AuthService.to.isLoggedIn() &&
-                          controller.currentUser.value?.role == Roles.admin ||
-                      controller.currentUser.value?.role == Roles.moderator) {
-                    return ElevatedButton(
-                        onPressed: () {
-                          Get.offAndToNamed(Routes.MODERATION);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          padding: const EdgeInsets.all(5),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(3),
-                            side: const BorderSide(color: Colors.orange),
-                          ),
-                        ),
-                        child: Text(
-                          "Модерация",
-                          style: TextStyle(
-                              color: Colors.orange[400], fontSize: 14),
-                        ));
-                  } else {
-                    return const SizedBox();
-                  }
-                }),
-                const SizedBox(
-                  width: 20,
-                ),
-                const Icon(
-                  Icons.edit_document,
-                  size: 16,
-                ),
-                const SizedBox(
-                  width: 3,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    controller.goToCreatePost();
-                  },
-                  child: const MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Text(
-                      "Написать пост",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(
-              width: 50,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: AuthService.to.isLoggedIn()
-                  ? Obx(() {
-                      var user = controller.currentUser.value;
-
-                      if (user != null) {
-                        return ElevatedButton(
-                          onPressed: () {
-                            Get.toNamed(Routes.PROFILE,
-                                parameters: {"userId": AuthService.to.userId});
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            padding: const EdgeInsets.all(5),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(3),
-                              side: const BorderSide(color: Colors.orange),
-                            ),
-                          ),
-                          child: Text(
-                            user.username,
-                            style: TextStyle(
-                                color: Colors.orange[400], fontSize: 14),
-                          ),
-                        );
-                      } else {
-                        return const CircularProgressIndicator(
-                          color: Colors.orange,
-                        );
-                      }
-                    })
-                  : ElevatedButton(
-                      onPressed: () {
-                        Get.offAndToNamed(Routes.LOGIN);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        padding: const EdgeInsets.all(5),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(3),
-                          side: const BorderSide(color: Colors.orange),
-                        ),
-                      ),
-                      child: Text(
-                        "Войти",
-                        style:
-                            TextStyle(color: Colors.orange[400], fontSize: 14),
-                      ),
-                    ),
-            ),
-          ],
-        ),
+        appBar: const CustomAppBar(),
         body: Column(
           children: [
             const Center(

@@ -4,5 +4,4 @@ class ReadPostController extends GetxController {
   final String postId;
 
   ReadPostController(this.postId);
-  
 }

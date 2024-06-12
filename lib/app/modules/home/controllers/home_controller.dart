@@ -13,7 +13,7 @@ class HomeController extends GetxController {
   final Rx<PostResponse> newPosts = PostResponse.loading().obs;
   final Rx<PostResponse> forYouPosts = PostResponse.loading().obs;
   final Rx<PostResponse> popularPosts = PostResponse.loading().obs;
-  Rxn<User> currentUser = Rxn<User>();
+  Rx<User> currentUser = AuthService.to.currentUser;
   HomeController(this.postRepository, this.userRepository);
 
   @override
@@ -58,16 +58,17 @@ class HomeController extends GetxController {
     );
   }
 
-  void goToCreatePost() {
-    if (!AuthService.to.isLoggedIn()) {
-      Get.snackbar("Ошибка", "Войдите в аккаунт");
-      return;
-    }
-    if (currentUser.value?.role == Roles.baned) {
-      Get.snackbar("Вы забанены", "У вас не возможности написать пост");
-      return;
-    }
-    Get.offAndToNamed(Routes.CREATE_POST,
-        parameters: {"username": currentUser.value!.username});
-  }
+  // void goToCreatePost() {
+  //   if (AuthService.to.currentUser.value.role == Roles.unknow) {
+  //     Get.snackbar("Ошибка", "Войдите в аккаунт");
+  //     return;
+  //   }
+  //   if (AuthService.to.currentUser.value.role == Roles.baned) {
+  //     Get.snackbar("Вы забанены", "У вас не возможности написать пост");
+  //     return;
+  //   }
+  //   Get.offAndToNamed(
+  //     Routes.CREATE_POST,
+  //   );
+  // }
 }

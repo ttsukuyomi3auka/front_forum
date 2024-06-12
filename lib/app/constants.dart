@@ -1,3 +1,5 @@
+import 'package:front_forum/app/models/user/user.dart';
+
 String baseUrl = "http://localhost:3000/api";
 
 enum Roles {
@@ -5,6 +7,7 @@ enum Roles {
   moderator,
   user,
   baned,
+  unknow,
 }
 
 enum ReviewStatus {
@@ -78,3 +81,10 @@ class ShortPost {
     };
   }
 }
+
+User emptyUser = User(
+    username: "no name",
+    password: "",
+    name: "def",
+    surname: "def",
+    role: Roles.unknow);
