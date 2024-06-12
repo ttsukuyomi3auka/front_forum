@@ -28,4 +28,18 @@ class PostRepository {
     var response = await api.create(ApiEndpoints.createPost, data.toJson());
     return response;
   }
+
+  Future<PostResponse> getUserPosts(String userId) async {
+    var response = await api.get("${ApiEndpoints.getUserPosts}$userId");
+
+    return response.when(
+        loading: () => PostResponse.loading(),
+        success: (jsonData) {
+          var temp = jsonData as List<dynamic>;
+          var product = temp.map((e) => Post.fromJson(e)).toList();
+          return PostResponse.success(product);
+        },
+        failed: (message, exception) =>
+            PostResponse.failed(message, exception));
+  }
 }

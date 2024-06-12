@@ -1,3 +1,4 @@
+import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:front_forum/app/repositories/user_repository.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,7 @@ class ProfileBinding extends Bindings {
     Get.lazyPut<ProfileController>(
       () => ProfileController(
         UserRepository(Get.find()),
+        PostRepository(Get.find()),
         Get.parameters['userId']!,
       ),
     );
