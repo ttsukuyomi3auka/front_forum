@@ -87,7 +87,7 @@ class HomeView extends GetView<HomeController> {
                       if (user != null) {
                         return ElevatedButton(
                           onPressed: () {
-                            Get.offAndToNamed(Routes.PROFILE,
+                            Get.toNamed(Routes.PROFILE,
                                 parameters: {"userId": AuthService.to.userId});
                           },
                           style: ElevatedButton.styleFrom(
@@ -192,11 +192,6 @@ class HomeView extends GetView<HomeController> {
                     ],
                   )),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  Get.offAndToNamed(Routes.LOGIN);
-                },
-                child: const Text("back")),
           ],
         ),
       ),
@@ -241,7 +236,7 @@ class PostList extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Get.offAndToNamed(Routes.PROFILE,
+                              Get.toNamed(Routes.PROFILE,
                                   parameters: {"userId": item.author});
                             },
                             child: MouseRegion(
@@ -270,7 +265,7 @@ class PostList extends StatelessWidget {
                           const SizedBox(height: 4.0),
                           GestureDetector(
                             onTap: () {
-                              Get.offAndToNamed(Routes.READ_POST,
+                              Get.toNamed(Routes.READ_POST,
                                   parameters: {"postId": item.id});
                             },
                             child: MouseRegion(

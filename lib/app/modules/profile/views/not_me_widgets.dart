@@ -40,7 +40,7 @@ class NotMeWidget extends StatelessWidget {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    Get.offAndToNamed(Routes.READ_POST,
+                                    Get.toNamed(Routes.READ_POST,
                                         parameters: {"postId": post.id});
                                   },
                                   child: MouseRegion(
@@ -130,17 +130,30 @@ class NotMeWidget extends StatelessWidget {
               loading: () => const Center(child: CircularProgressIndicator()),
               success: (user) {
                 return Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Никнейм: ${user.username}',
-                          style: const TextStyle(fontSize: 18)),
-                      const SizedBox(height: 8),
-                      const SizedBox(height: 8),
-                      Text('Обо мне: ${user.aboutMe}',
-                          style: const TextStyle(fontSize: 18)),
-                    ],
+                  padding: EdgeInsets.only(
+                      left: MediaQuery.of(context).size.width / 2),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        ProfileItem(
+                          title: "Никнейм",
+                          content: user.username,
+                        ),
+                        ProfileItem(
+                          title: "Имя",
+                          content: user.name,
+                        ),
+                        ProfileItem(
+                          title: "Фамилия",
+                          content: user.surname,
+                        ),
+                        ProfileItem(
+                          title: "Обо мне",
+                          content: user.aboutMe,
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -155,6 +168,44 @@ class NotMeWidget extends StatelessWidget {
               ),
             );
           }),
+        ],
+      ),
+    );
+  }
+}
+
+class ProfileItem extends StatelessWidget {
+  final String title;
+  final String content;
+
+  const ProfileItem({
+    super.key,
+    required this.title,
+    required this.content,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              content,
+              style: const TextStyle(fontSize: 16),
+            ),
+          ),
         ],
       ),
     );

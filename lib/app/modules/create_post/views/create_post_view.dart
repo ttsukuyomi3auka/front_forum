@@ -37,7 +37,7 @@ class CreatePostView extends GetView<CreatePostController> {
             padding: const EdgeInsets.only(right: 10),
             child: ElevatedButton(
               onPressed: () {
-                Get.offAndToNamed(Routes.PROFILE,
+                Get.toNamed(Routes.PROFILE,
                     parameters: {"userId": AuthService.to.userId});
               },
               style: ElevatedButton.styleFrom(

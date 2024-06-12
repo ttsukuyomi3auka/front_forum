@@ -20,7 +20,7 @@ class ProfileView extends GetView<ProfileController> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Profile'),
+          title: const Text('Профиль'),
         ),
         body: Column(
           children: [
@@ -33,7 +33,7 @@ class ProfileView extends GetView<ProfileController> {
               ],
             ),
             (controller.userId == AuthService.to.userId)
-                ? ItsMeWidget()
+                ? ItsMeWidget(controller)
                 : NotMeWidget(controller)
           ],
         ),

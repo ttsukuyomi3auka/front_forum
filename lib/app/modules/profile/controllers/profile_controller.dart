@@ -8,6 +8,7 @@ class ProfileController extends GetxController {
   final String userId;
   final Rx<UserResponse> user = UserResponse.loading().obs;
   Rx<PostResponse> userPosts = PostResponse.loading().obs;
+  RxBool isEditable = false.obs;
 
   ProfileController(this.userRepository, this.postRepository, this.userId);
 
