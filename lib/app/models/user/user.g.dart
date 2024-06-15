@@ -43,4 +43,5 @@ const _$RolesEnumMap = {
   Roles.moderator: 'moderator',
   Roles.user: 'user',
   Roles.baned: 'baned',
+  Roles.unknow: 'unknow',
 };

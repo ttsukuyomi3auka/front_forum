@@ -1,9 +1,7 @@
-import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/models/post/post.dart';
 import 'package:front_forum/app/models/user/user.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:front_forum/app/repositories/user_repository.dart';
-import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';
 import 'package:get/get.dart';
 
@@ -57,18 +55,4 @@ class HomeController extends GetxController {
       },
     );
   }
-
-  // void goToCreatePost() {
-  //   if (AuthService.to.currentUser.value.role == Roles.unknow) {
-  //     Get.snackbar("Ошибка", "Войдите в аккаунт");
-  //     return;
-  //   }
-  //   if (AuthService.to.currentUser.value.role == Roles.baned) {
-  //     Get.snackbar("Вы забанены", "У вас не возможности написать пост");
-  //     return;
-  //   }
-  //   Get.offAndToNamed(
-  //     Routes.CREATE_POST,
-  //   );
-  // }
 }

@@ -153,8 +153,10 @@ class PostList extends StatelessWidget {
                           const SizedBox(height: 4.0),
                           GestureDetector(
                             onTap: () {
-                              Get.toNamed(Routes.READ_POST,
-                                  parameters: {"postId": item.id});
+                              Get.toNamed(
+                                Routes.READ_POST,
+                                arguments: [item, author],
+                              );
                             },
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,

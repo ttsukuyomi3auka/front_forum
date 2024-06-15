@@ -29,6 +29,11 @@ class PostRepository {
     return response;
   }
 
+  Future<bool> addLikeToPost(String postId) async {
+    var response = await api.add("${ApiEndpoints.addLikeToPost}$postId");
+    return response;
+  }
+
   Future<PostResponse> getUserPosts(String userId) async {
     var response = await api.get("${ApiEndpoints.getUserPosts}$userId");
 

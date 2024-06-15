@@ -31,6 +31,7 @@ class NotMeWidget extends StatelessWidget {
                         if (!authorSnapshot.hasData) {
                           return const SizedBox();
                         }
+                        var author = authorSnapshot.data!;
                         return Card(
                           elevation: 4,
                           margin: const EdgeInsets.all(10),
@@ -41,7 +42,7 @@ class NotMeWidget extends StatelessWidget {
                                 GestureDetector(
                                   onTap: () {
                                     Get.toNamed(Routes.READ_POST,
-                                        parameters: {"postId": post.id});
+                                        arguments: [post, author]);
                                   },
                                   child: MouseRegion(
                                     cursor: SystemMouseCursors.click,

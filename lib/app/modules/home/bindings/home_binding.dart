@@ -7,9 +7,11 @@ import '../controllers/home_controller.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<HomeController>(
-      () => HomeController(
-          PostRepository(Get.find()), UserRepository(Get.find())),
+    Get.put(
+      HomeController(
+        PostRepository(Get.find()),
+        UserRepository(Get.find()),
+      ),
     );
   }
 }

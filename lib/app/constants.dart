@@ -26,11 +26,18 @@ abstract class ApiEndpoints {
   static const String registration = "/auth/registration";
   static const String login = "/auth/login";
   static const String refresh = "/auth/refresh";
+
   static const String getUserById = "/user/";
+
   static const String getApprovedPost = "/post/";
   static const String createPost = "/post/create";
   static const String getUserPosts = "/post/user-posts/";
+  static const String addLikeToPost = "/post/like";
+
   static const String getArea = "/area/";
+
+  static const String createComment = "/comment/create";
+  static const String getPostComments = "/comment/post";
 }
 
 class ShortUser {
@@ -78,6 +85,23 @@ class ShortPost {
       'title': title,
       'description': description,
       'areas': areas,
+    };
+  }
+}
+
+class ShortComment {
+  String data;
+  String postId;
+
+  ShortComment({
+    required this.data,
+    required this.postId,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'data': data,
+      'postId': postId,
     };
   }
 }
