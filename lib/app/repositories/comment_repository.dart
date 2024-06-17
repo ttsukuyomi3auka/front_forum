@@ -24,6 +24,20 @@ class CommentRepository {
             CommentsResponse.failed(message, exception));
   }
 
+  Future<CommentsResponse> getAllNonApprovedComments() async {
+    var response = await api.get(ApiEndpoints.getAllNonApprovedComments);
+
+    return response.when(
+        loading: () => CommentsResponse.loading(),
+        success: (jsonData) {
+          var temp = jsonData as List<dynamic>;
+          var comments = temp.map((e) => Comment.fromJson(e)).toList();
+          return CommentsResponse.success(comments);
+        },
+        failed: (message, exception) =>
+            CommentsResponse.failed(message, exception));
+  }
+
   Future<bool> createComment(ShortComment data) async {
     var response = await api.create(ApiEndpoints.createComment, data.toJson());
     return response;

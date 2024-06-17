@@ -1,23 +1,51 @@
+import 'package:front_forum/app/models/comment/comment.dart';
+import 'package:front_forum/app/models/post/post.dart';
+import 'package:front_forum/app/repositories/comment_repository.dart';
+import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:get/get.dart';
 
 class ModerationController extends GetxController {
-  //TODO: Implement ModerationController
+  final PostRepository postRepository;
+  final CommentRepository commentRepository;
+  final Rx<PostResponse> posts = PostResponse.loading().obs;
+  final Rx<CommentsResponse> comments = CommentsResponse.loading().obs;
 
-  final count = 0.obs;
+  ModerationController(this.commentRepository, this.postRepository);
+
   @override
   void onInit() {
+    getPosts();
+    getComments();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void getPosts() async {
+    posts.value = PostResponse.loading();
+    var response = await postRepository.getAllNonApprovedPosts();
+
+    response.when(
+      loading: () {},
+      success: (List<Post> list) {
+        posts.value = PostResponse.success(list);
+      },
+      failed: (message, exception) {
+        posts.value = PostResponse.failed(message, exception);
+      },
+    );
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  void getComments() async {
+    comments.value = CommentsResponse.loading();
+    var response = await commentRepository.getAllNonApprovedComments();
 
-  void increment() => count.value++;
+    response.when(
+      loading: () {},
+      success: (List<Comment> list) {
+        comments.value = CommentsResponse.success(list);
+      },
+      failed: (message, exception) {
+        comments.value = CommentsResponse.failed(message, exception);
+      },
+    );
+  }
 }

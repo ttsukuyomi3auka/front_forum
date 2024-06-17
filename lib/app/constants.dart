@@ -33,11 +33,13 @@ abstract class ApiEndpoints {
   static const String createPost = "/post/create";
   static const String getUserPosts = "/post/user-posts/";
   static const String addLikeToPost = "/post/like";
+  static const String getAllNonApprovedPosts = "/post/non-approved";
 
   static const String getArea = "/area/";
 
   static const String createComment = "/comment/create";
   static const String getPostComments = "/comment/post";
+  static const String getAllNonApprovedComments = "/comment/non-approved";
 }
 
 class ShortUser {

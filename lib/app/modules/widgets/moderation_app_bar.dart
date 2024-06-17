@@ -4,8 +4,8 @@ import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';
 import 'package:get/get.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({super.key});
+class ModerationAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const ModerationAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,33 +18,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Row(
           children: [
-            Obx(() {
-              if (AuthService.to.isLoggedIn() &&
-                      AuthService.to.currentUser.value == Roles.admin ||
-                  AuthService.to.currentUser.value.role == Roles.moderator) {
-                return ElevatedButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.MODERATION);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      padding: const EdgeInsets.all(5),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(3),
-                        side: const BorderSide(color: Colors.orange),
-                      ),
-                    ),
-                    child: Text(
-                      "Модерация",
-                      style: TextStyle(color: Colors.orange[400], fontSize: 14),
-                    ));
-              } else {
-                return const SizedBox();
-              }
-            }),
-            const SizedBox(
-              width: 20,
-            ),
             const Icon(
               Icons.edit_document,
               size: 16,

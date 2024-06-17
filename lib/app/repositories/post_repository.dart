@@ -24,6 +24,20 @@ class PostRepository {
             PostResponse.failed(message, exception));
   }
 
+  Future<PostResponse> getAllNonApprovedPosts() async {
+    var response = await api.get(ApiEndpoints.getAllNonApprovedPosts);
+
+    return response.when(
+        loading: () => PostResponse.loading(),
+        success: (jsonData) {
+          var temp = jsonData as List<dynamic>;
+          var product = temp.map((e) => Post.fromJson(e)).toList();
+          return PostResponse.success(product);
+        },
+        failed: (message, exception) =>
+            PostResponse.failed(message, exception));
+  }
+
   Future<bool> createPost(ShortPost data) async {
     var response = await api.create(ApiEndpoints.createPost, data.toJson());
     return response;

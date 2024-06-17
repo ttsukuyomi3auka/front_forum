@@ -9,6 +9,7 @@ import 'package:front_forum/app/services/storage_service.dart';
 import 'package:get/get.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initServices();
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
