@@ -29,7 +29,7 @@ mixin _$Post {
   DateTime get date => throw _privateConstructorUsedError;
   int get likes => throw _privateConstructorUsedError;
   List<String> get comments => throw _privateConstructorUsedError;
-  List<String> get areas => throw _privateConstructorUsedError;
+  List<AreaOfActivity> get areas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +50,7 @@ abstract class $PostCopyWith<$Res> {
       DateTime date,
       int likes,
       List<String> comments,
-      List<String> areas});
+      List<AreaOfActivity> areas});
 }
 
 /// @nodoc
@@ -112,7 +112,7 @@ class _$PostCopyWithImpl<$Res, $Val extends Post>
       areas: null == areas
           ? _value.areas
           : areas // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<AreaOfActivity>,
     ) as $Val);
   }
 }
@@ -133,7 +133,7 @@ abstract class _$$PostImplCopyWith<$Res> implements $PostCopyWith<$Res> {
       DateTime date,
       int likes,
       List<String> comments,
-      List<String> areas});
+      List<AreaOfActivity> areas});
 }
 
 /// @nodoc
@@ -192,7 +192,7 @@ class __$$PostImplCopyWithImpl<$Res>
       areas: null == areas
           ? _value._areas
           : areas // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<AreaOfActivity>,
     ));
   }
 }
@@ -209,7 +209,7 @@ class _$PostImpl extends _Post {
       required this.date,
       required this.likes,
       required final List<String> comments,
-      required final List<String> areas})
+      required final List<AreaOfActivity> areas})
       : _comments = comments,
         _areas = areas,
         super._();
@@ -240,9 +240,9 @@ class _$PostImpl extends _Post {
     return EqualUnmodifiableListView(_comments);
   }
 
-  final List<String> _areas;
+  final List<AreaOfActivity> _areas;
   @override
-  List<String> get areas {
+  List<AreaOfActivity> get areas {
     if (_areas is EqualUnmodifiableListView) return _areas;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_areas);
@@ -308,7 +308,7 @@ abstract class _Post extends Post {
       required final DateTime date,
       required final int likes,
       required final List<String> comments,
-      required final List<String> areas}) = _$PostImpl;
+      required final List<AreaOfActivity> areas}) = _$PostImpl;
   _Post._() : super._();
 
   factory _Post.fromJson(Map<String, dynamic> json) = _$PostImpl.fromJson;
@@ -331,7 +331,7 @@ abstract class _Post extends Post {
   @override
   List<String> get comments;
   @override
-  List<String> get areas;
+  List<AreaOfActivity> get areas;
   @override
   @JsonKey(ignore: true)
   _$$PostImplCopyWith<_$PostImpl> get copyWith =>

@@ -20,9 +20,10 @@ _$UserImpl _$$UserImplFromJson(Map<String, dynamic> json) => _$UserImpl(
               ?.map((e) => e as String)
               .toList() ??
           const [],
-      areas:
-          (json['areas'] as List<dynamic>?)?.map((e) => e as String).toList() ??
-              const [],
+      areas: (json['areas'] as List<dynamic>?)
+              ?.map((e) => AreaOfActivity.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$UserImplToJson(_$UserImpl instance) =>

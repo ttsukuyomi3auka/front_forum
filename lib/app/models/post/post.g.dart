@@ -16,7 +16,9 @@ _$PostImpl _$$PostImplFromJson(Map<String, dynamic> json) => _$PostImpl(
       likes: (json['likes'] as num).toInt(),
       comments:
           (json['comments'] as List<dynamic>).map((e) => e as String).toList(),
-      areas: (json['areas'] as List<dynamic>).map((e) => e as String).toList(),
+      areas: (json['areas'] as List<dynamic>)
+          .map((e) => AreaOfActivity.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$PostImplToJson(_$PostImpl instance) =>

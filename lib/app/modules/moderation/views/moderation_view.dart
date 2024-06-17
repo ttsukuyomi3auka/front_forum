@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_forum/app/modules/widgets/comments_moderation_list_widget.dart';
 import 'package:front_forum/app/modules/widgets/moderation_app_bar.dart';
-import 'package:front_forum/app/modules/widgets/post_list_widgets.dart';
 import 'package:front_forum/app/modules/widgets/post_moderation_list.dart';
 import 'package:get/get.dart';
 import '../controllers/moderation_controller.dart';

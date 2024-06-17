@@ -28,7 +28,7 @@ mixin _$User {
   Roles get role => throw _privateConstructorUsedError;
   List<String> get posts => throw _privateConstructorUsedError;
   List<String> get comments => throw _privateConstructorUsedError;
-  List<String> get areas => throw _privateConstructorUsedError;
+  List<AreaOfActivity> get areas => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +49,7 @@ abstract class $UserCopyWith<$Res> {
       Roles role,
       List<String> posts,
       List<String> comments,
-      List<String> areas});
+      List<AreaOfActivity> areas});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       areas: null == areas
           ? _value.areas
           : areas // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<AreaOfActivity>,
     ) as $Val);
   }
 }
@@ -132,7 +132,7 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       Roles role,
       List<String> posts,
       List<String> comments,
-      List<String> areas});
+      List<AreaOfActivity> areas});
 }
 
 /// @nodoc
@@ -191,7 +191,7 @@ class __$$UserImplCopyWithImpl<$Res>
       areas: null == areas
           ? _value._areas
           : areas // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<AreaOfActivity>,
     ));
   }
 }
@@ -208,7 +208,7 @@ class _$UserImpl implements _User {
       required this.role,
       final List<String> posts = const [],
       final List<String> comments = const [],
-      final List<String> areas = const []})
+      final List<AreaOfActivity> areas = const []})
       : _posts = posts,
         _comments = comments,
         _areas = areas;
@@ -247,10 +247,10 @@ class _$UserImpl implements _User {
     return EqualUnmodifiableListView(_comments);
   }
 
-  final List<String> _areas;
+  final List<AreaOfActivity> _areas;
   @override
   @JsonKey()
-  List<String> get areas {
+  List<AreaOfActivity> get areas {
     if (_areas is EqualUnmodifiableListView) return _areas;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_areas);
@@ -317,7 +317,7 @@ abstract class _User implements User {
       required final Roles role,
       final List<String> posts,
       final List<String> comments,
-      final List<String> areas}) = _$UserImpl;
+      final List<AreaOfActivity> areas}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -338,7 +338,7 @@ abstract class _User implements User {
   @override
   List<String> get comments;
   @override
-  List<String> get areas;
+  List<AreaOfActivity> get areas;
   @override
   @JsonKey(ignore: true)
   _$$UserImplCopyWith<_$UserImpl> get copyWith =>

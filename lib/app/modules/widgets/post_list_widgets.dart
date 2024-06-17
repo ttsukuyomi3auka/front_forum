@@ -32,11 +32,14 @@ class PostList extends StatelessWidget {
                     return const SizedBox();
                   }
                   var author = authorSnapshot.data!;
-                  var areas = item.getAreas;
+
                   return Card(
                     elevation: 4,
-                    margin: const EdgeInsets.only(
-                        right: 400, left: 100, top: 8, bottom: 8),
+                    margin: EdgeInsets.only(
+                        right: MediaQuery.of(context).size.width / 10,
+                        left: MediaQuery.of(context).size.width / 10,
+                        top: 8,
+                        bottom: 8),
                     child: ListTile(
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,6 +52,8 @@ class PostList extends StatelessWidget {
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "${author.surname} ${author.name}",
@@ -56,9 +61,6 @@ class PostList extends StatelessWidget {
                                       color: Colors.black,
                                       fontSize: 16.0,
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    width: 10,
                                   ),
                                   Text(
                                     formattedDate,

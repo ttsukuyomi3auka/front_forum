@@ -1,6 +1,7 @@
 import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/models/api%20response/api_response.dart';
 import 'package:front_forum/app/models/user/user.dart';
+import 'package:front_forum/app/services/auth_service.dart';
 import 'package:front_forum/app/services/network_service.dart';
 
 typedef UserResponse = ApiResponse<User>;
@@ -20,5 +21,12 @@ class UserRepository {
       },
       failed: (message, exception) => UserResponse.failed(message, exception),
     );
+  }
+
+  Future<bool> addAreasToUser(List<String> data) async {
+    var response = await api.addPost(
+        "${ApiEndpoints.addAreasToUser}${AuthService.to.userId}",
+        {"areas": data});
+    return response;
   }
 }

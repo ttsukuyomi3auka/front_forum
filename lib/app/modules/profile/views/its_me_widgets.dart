@@ -17,13 +17,17 @@ class ItsMeWidget extends StatelessWidget {
     final aboutMeController = TextEditingController();
     final nameController = TextEditingController();
     final surnameController = TextEditingController();
+    final areasController = TextEditingController();
 
     return Expanded(
       child: TabBarView(
         children: [
           Obx(() {
             return controller.userPosts.value.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => const Center(
+                  child: CircularProgressIndicator(
+                color: Colors.orange,
+              )),
               success: (posts) {
                 return ListView.builder(
                   itemCount: posts.length,
@@ -31,97 +35,103 @@ class ItsMeWidget extends StatelessWidget {
                     var post = posts[index];
                     var formattedDate =
                         DateFormat('yyyy-MM-dd HH:mm').format(post.date);
-                    return FutureBuilder<User?>(
-                      future: post.getAuthor,
-                      builder: (context, authorSnapshot) {
-                        if (!authorSnapshot.hasData) {
-                          return const SizedBox();
-                        }
-                        var author = authorSnapshot.data!;
-                        return Padding(
-                          padding: EdgeInsets.only(
-                              right: MediaQuery.of(context).size.width / 2),
-                          child: Card(
-                            elevation: 4,
-                            margin: const EdgeInsets.all(10),
-                            child: ListTile(
-                              title: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed(Routes.READ_POST,
-                                          arguments: [post, author]);
-                                    },
-                                    child: MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            post.title,
-                                            style: const TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 20.0,
+                    if (posts.isEmpty) {
+                      return const Text("Вы ещё не написали ни одного поста");
+                    } else {
+                      return FutureBuilder<User?>(
+                        future: post.getAuthor,
+                        builder: (context, authorSnapshot) {
+                          if (!authorSnapshot.hasData) {
+                            return const SizedBox();
+                          }
+                          var author = authorSnapshot.data!;
+                          return Padding(
+                            padding: EdgeInsets.only(
+                                right: MediaQuery.of(context).size.width / 2),
+                            child: Card(
+                              elevation: 4,
+                              margin: const EdgeInsets.all(10),
+                              child: ListTile(
+                                title: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.toNamed(Routes.READ_POST,
+                                            arguments: [post, author]);
+                                      },
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              post.title,
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20.0,
+                                              ),
                                             ),
-                                          ),
-                                          const SizedBox(
-                                            width: 4,
-                                          ),
-                                          Text(
-                                            formattedDate,
-                                            style: const TextStyle(
-                                                color: Colors.black54,
-                                                fontSize: 14),
-                                          ),
-                                        ],
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              formattedDate,
+                                              style: const TextStyle(
+                                                  color: Colors.black54,
+                                                  fontSize: 14),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              subtitle: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    post.description.length > 100
-                                        ? '${post.description.substring(0, 100)}...'
-                                        : post.description,
-                                    style: const TextStyle(fontSize: 14.0),
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                  Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.thumb_up,
-                                        color: Colors.orange,
-                                        size: 16.0,
-                                      ),
-                                      const SizedBox(width: 4.0),
-                                      Text(
-                                        post.likes.toString(),
-                                        style: const TextStyle(fontSize: 14.0),
-                                      ),
-                                      const SizedBox(width: 16.0),
-                                      const Icon(
-                                        Icons.comment,
-                                        color: Colors.orange,
-                                        size: 16.0,
-                                      ),
-                                      const SizedBox(width: 4.0),
-                                      Text(
-                                        post.comments.length.toString(),
-                                        style: const TextStyle(fontSize: 14.0),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 8.0),
-                                ],
+                                  ],
+                                ),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      post.description.length > 100
+                                          ? '${post.description.substring(0, 100)}...'
+                                          : post.description,
+                                      style: const TextStyle(fontSize: 14.0),
+                                    ),
+                                    const SizedBox(height: 8.0),
+                                    Row(
+                                      children: [
+                                        const Icon(
+                                          Icons.thumb_up,
+                                          color: Colors.orange,
+                                          size: 16.0,
+                                        ),
+                                        const SizedBox(width: 4.0),
+                                        Text(
+                                          post.likes.toString(),
+                                          style:
+                                              const TextStyle(fontSize: 14.0),
+                                        ),
+                                        const SizedBox(width: 16.0),
+                                        const Icon(
+                                          Icons.comment,
+                                          color: Colors.orange,
+                                          size: 16.0,
+                                        ),
+                                        const SizedBox(width: 4.0),
+                                        Text(
+                                          post.comments.length.toString(),
+                                          style:
+                                              const TextStyle(fontSize: 14.0),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 8.0),
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    );
+                          );
+                        },
+                      );
+                    }
                   },
                 );
               },
@@ -138,12 +148,18 @@ class ItsMeWidget extends StatelessWidget {
           }),
           Obx(() {
             return controller.user.value.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
+              loading: () => const Center(
+                  child: CircularProgressIndicator(
+                color: Colors.orange,
+              )),
               success: (user) {
                 usernameController.text = user.username;
                 nameController.text = user.name;
                 surnameController.text = user.surname;
                 aboutMeController.text = user.aboutMe;
+                areasController.text =
+                    user.areas.map((area) => area.title).join(', ');
+
                 return Padding(
                   padding: EdgeInsets.only(
                       left: MediaQuery.of(context).size.width / 2),
@@ -173,6 +189,12 @@ class ItsMeWidget extends StatelessWidget {
                                 content: user.aboutMe,
                                 controller: aboutMeController,
                                 isEditable: controller.isEditable.value),
+                            ProfileItem(
+                              title: "Выбранные сферы",
+                              content: areasController.text,
+                              controller: areasController,
+                              isEditable: controller.isEditable.value,
+                            ),
                             Center(
                               child: ElevatedButton(
                                 onPressed: () {

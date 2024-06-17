@@ -28,6 +28,7 @@ abstract class ApiEndpoints {
   static const String refresh = "/auth/refresh";
 
   static const String getUserById = "/user/";
+  static const String addAreasToUser = "/user/areas";
 
   static const String getApprovedPost = "/post/";
   static const String createPost = "/post/create";
