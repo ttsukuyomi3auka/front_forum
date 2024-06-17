@@ -53,7 +53,7 @@ class HomeView extends GetView<HomeController> {
                                       const SizedBox(height: 16.0),
                                       ElevatedButton(
                                         onPressed: () {
-                                          Get.toNamed(Routes.LOGIN);
+                                          Get.offAndToNamed(Routes.LOGIN);
                                         },
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.orange[50],

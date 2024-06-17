@@ -61,4 +61,17 @@ class PostRepository {
         failed: (message, exception) =>
             PostResponse.failed(message, exception));
   }
+
+  Future<ApiResponse<Post>> getPostById(String postId) async {
+    var response = await api.get("${ApiEndpoints.getPostById}$postId");
+    return response.when(
+      loading: () => ApiResponse<Post>.loading(),
+      success: (data) {
+        return ApiResponse<Post>.success(
+            Post.fromJson(data as Map<String, dynamic>));
+      },
+      failed: (message, exception) =>
+          ApiResponse<Post>.failed(message, exception),
+    );
+  }
 }

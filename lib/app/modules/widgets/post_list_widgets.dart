@@ -76,7 +76,7 @@ class PostList extends StatelessWidget {
                             onTap: () {
                               Get.toNamed(
                                 Routes.READ_POST,
-                                arguments: [item, author],
+                                parameters: {"postId": item.id},
                               );
                             },
                             child: MouseRegion(

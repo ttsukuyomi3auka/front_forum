@@ -8,8 +8,12 @@ class ReadPostBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<ReadPostController>(
-      () => ReadPostController(UserRepository(Get.find()),
-          CommentRepository(Get.find()), PostRepository(Get.find())),
+      () => ReadPostController(
+        UserRepository(Get.find()),
+        CommentRepository(Get.find()),
+        PostRepository(Get.find()),
+        Get.parameters['postId']!,
+      ),
     );
   }
 }

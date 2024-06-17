@@ -22,6 +22,18 @@ class NotMeWidget extends StatelessWidget {
                 color: Colors.orange,
               )),
               success: (posts) {
+                if (posts.isEmpty) {
+                  return const Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      "У этого пользователя ещё нет постов.",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  );
+                }
                 return ListView.builder(
                   itemCount: posts.length,
                   itemBuilder: (context, index) {
@@ -48,7 +60,7 @@ class NotMeWidget extends StatelessWidget {
                                   GestureDetector(
                                     onTap: () {
                                       Get.toNamed(Routes.READ_POST,
-                                          arguments: [post, author]);
+                                          parameters: {"postId": post.id});
                                     },
                                     child: MouseRegion(
                                       cursor: SystemMouseCursors.click,

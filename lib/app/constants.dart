@@ -1,3 +1,4 @@
+import 'package:front_forum/app/models/post/post.dart';
 import 'package:front_forum/app/models/user/user.dart';
 
 String baseUrl = "http://localhost:3000/api";
@@ -30,6 +31,7 @@ abstract class ApiEndpoints {
   static const String getUserById = "/user/";
   static const String addAreasToUser = "/user/areas";
 
+  static const String getPostById = "/post/post";
   static const String getApprovedPost = "/post/";
   static const String createPost = "/post/create";
   static const String getUserPosts = "/post/user-posts/";
@@ -115,3 +117,14 @@ User emptyUser = User(
     name: "def",
     surname: "def",
     role: Roles.unknow);
+
+Post emptyPost = Post(
+    id: "",
+    title: "",
+    description: "",
+    status: ReviewStatus.approved,
+    author: "",
+    date: DateTime.now(),
+    likes: 0,
+    comments: [],
+    areas: []);

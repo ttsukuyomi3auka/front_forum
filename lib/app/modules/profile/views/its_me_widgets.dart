@@ -29,109 +29,116 @@ class ItsMeWidget extends StatelessWidget {
                 color: Colors.orange,
               )),
               success: (posts) {
+                if (posts.isEmpty) {
+                  return const Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      "Вы не написали ещё ни одного поста.",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  );
+                }
+
                 return ListView.builder(
                   itemCount: posts.length,
                   itemBuilder: (context, index) {
                     var post = posts[index];
                     var formattedDate =
                         DateFormat('yyyy-MM-dd HH:mm').format(post.date);
-                    if (posts.isEmpty) {
-                      return const Text("Вы ещё не написали ни одного поста");
-                    } else {
-                      return FutureBuilder<User?>(
-                        future: post.getAuthor,
-                        builder: (context, authorSnapshot) {
-                          if (!authorSnapshot.hasData) {
-                            return const SizedBox();
-                          }
-                          var author = authorSnapshot.data!;
-                          return Padding(
-                            padding: EdgeInsets.only(
-                                right: MediaQuery.of(context).size.width / 2),
-                            child: Card(
-                              elevation: 4,
-                              margin: const EdgeInsets.all(10),
-                              child: ListTile(
-                                title: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        Get.toNamed(Routes.READ_POST,
-                                            arguments: [post, author]);
-                                      },
-                                      child: MouseRegion(
-                                        cursor: SystemMouseCursors.click,
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              post.title,
-                                              style: const TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 20.0,
-                                              ),
+                    return FutureBuilder<User?>(
+                      future: post.getAuthor,
+                      builder: (context, authorSnapshot) {
+                        if (!authorSnapshot.hasData) {
+                          return const SizedBox();
+                        }
+                        var author = authorSnapshot.data!;
+                        return Padding(
+                          padding: EdgeInsets.only(
+                              right: MediaQuery.of(context).size.width / 2),
+                          child: Card(
+                            elevation: 4,
+                            margin: const EdgeInsets.all(10),
+                            child: ListTile(
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(Routes.READ_POST,
+                                          parameters: {"postId": post.id});
+                                    },
+                                    child: MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            post.title,
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20.0,
                                             ),
-                                            const SizedBox(
-                                              width: 4,
-                                            ),
-                                            Text(
-                                              formattedDate,
-                                              style: const TextStyle(
-                                                  color: Colors.black54,
-                                                  fontSize: 14),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          Text(
+                                            formattedDate,
+                                            style: const TextStyle(
+                                                color: Colors.black54,
+                                                fontSize: 14),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      post.description.length > 100
-                                          ? '${post.description.substring(0, 100)}...'
-                                          : post.description,
-                                      style: const TextStyle(fontSize: 14.0),
-                                    ),
-                                    const SizedBox(height: 8.0),
-                                    Row(
-                                      children: [
-                                        const Icon(
-                                          Icons.thumb_up,
-                                          color: Colors.orange,
-                                          size: 16.0,
-                                        ),
-                                        const SizedBox(width: 4.0),
-                                        Text(
-                                          post.likes.toString(),
-                                          style:
-                                              const TextStyle(fontSize: 14.0),
-                                        ),
-                                        const SizedBox(width: 16.0),
-                                        const Icon(
-                                          Icons.comment,
-                                          color: Colors.orange,
-                                          size: 16.0,
-                                        ),
-                                        const SizedBox(width: 4.0),
-                                        Text(
-                                          post.comments.length.toString(),
-                                          style:
-                                              const TextStyle(fontSize: 14.0),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 8.0),
-                                  ],
-                                ),
+                                  ),
+                                ],
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    post.description.length > 100
+                                        ? '${post.description.substring(0, 100)}...'
+                                        : post.description,
+                                    style: const TextStyle(fontSize: 14.0),
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                  Row(
+                                    children: [
+                                      const Icon(
+                                        Icons.thumb_up,
+                                        color: Colors.orange,
+                                        size: 16.0,
+                                      ),
+                                      const SizedBox(width: 4.0),
+                                      Text(
+                                        post.likes.toString(),
+                                        style: const TextStyle(fontSize: 14.0),
+                                      ),
+                                      const SizedBox(width: 16.0),
+                                      const Icon(
+                                        Icons.comment,
+                                        color: Colors.orange,
+                                        size: 16.0,
+                                      ),
+                                      const SizedBox(width: 4.0),
+                                      Text(
+                                        post.comments.length.toString(),
+                                        style: const TextStyle(fontSize: 14.0),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8.0),
+                                ],
                               ),
                             ),
-                          );
-                        },
-                      );
-                    }
+                          ),
+                        );
+                      },
+                    );
                   },
                 );
               },

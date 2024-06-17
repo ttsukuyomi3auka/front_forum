@@ -3,6 +3,7 @@ import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';
 import 'package:get/get.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({super.key});
@@ -11,10 +12,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: GestureDetector(
-          onTap: () {
-            Get.offAndToNamed(Routes.HOME);
-          },
-          child: const Text('Смысл')),
+        onTap: () {
+          Get.offAndToNamed(Routes.HOME);
+        },
+        child: GradientText(
+          'Смысл',
+          style: const TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+          ),
+          colors: const [
+            Colors.orange,
+            Colors.red,
+            Colors.teal,
+          ],
+        ),
+      ),
       actions: [
         Row(
           children: [
