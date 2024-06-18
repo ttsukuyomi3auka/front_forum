@@ -58,6 +58,15 @@ class ReadPostController extends GetxController {
     getComments();
   }
 
+  void addLikeToComment(String commentId) async {
+    if (AuthService.to.currentUser.value.role == Roles.unknow) {
+      Get.snackbar("Ошибка", "Войдите в аккаунт");
+      return;
+    }
+    await commentRepository.addLikeToComment(commentId);
+    getComments();
+  }
+
   void createComment() async {
     ShortComment data =
         ShortComment(data: commentController.text, postId: postId);

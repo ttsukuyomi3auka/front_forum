@@ -48,6 +48,11 @@ class CommentRepository {
     return response;
   }
 
+  Future<bool> addLikeToComment(String commentId) async {
+    var response = await api.add("${ApiEndpoints.addLikeToComment}$commentId");
+    return response;
+  }
+
   Future<bool> rejectComment(String commentId) async {
     var response = await api.add("${ApiEndpoints.rejectComment}$commentId");
     return response;

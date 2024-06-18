@@ -47,6 +47,7 @@ abstract class ApiEndpoints {
   static const String getAllNonApprovedComments = "/comment/non-approved";
   static const String approveComment = "/comment/approve";
   static const String rejectComment = "/comment/reject";
+  static const String addLikeToComment = "/comment/like";
 }
 
 class ShortUser {

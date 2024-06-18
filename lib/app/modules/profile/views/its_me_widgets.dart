@@ -51,10 +51,6 @@ class ItsMeWidget extends StatelessWidget {
                     return FutureBuilder<User?>(
                       future: post.getAuthor,
                       builder: (context, authorSnapshot) {
-                        if (!authorSnapshot.hasData) {
-                          return const SizedBox();
-                        }
-                        var author = authorSnapshot.data!;
                         return Padding(
                           padding: EdgeInsets.only(
                               right: MediaQuery.of(context).size.width / 2),

@@ -21,7 +21,7 @@ class ProfileView extends GetView<ProfileController> {
               Get.offAndToNamed(Routes.HOME);
             },
             child: GradientText(
-              'Профиль',
+              'Смысл',
               style: const TextStyle(
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,

@@ -191,59 +191,66 @@ class CommentsPanel extends StatelessWidget {
                     var formattedDate =
                         DateFormat('yyyy-MM-dd HH:mm').format(comment.date);
                     return ListTile(
-                      title: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.PROFILE,
-                                parameters: {"userId": comment.author["_id"]});
-                            Get.delete<ReadPostController>(force: true);
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      comment.author['username'],
-                                      overflow: TextOverflow.visible,
+                        title: MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.PROFILE, parameters: {
+                                "userId": comment.author["_id"]
+                              });
+                              Get.delete<ReadPostController>(force: true);
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        comment.author['username'],
+                                        overflow: TextOverflow.visible,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 3),
-                                  Text(
-                                    formattedDate,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 14),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      formattedDate,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 14),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(comment.data),
-                          Row(
-                            children: [
-                              IconButton(
-                                onPressed: () {
-                                  //TODO логика нажатия лайка
-                                },
-                                icon: const Icon(
-                                  Icons.thumb_up,
-                                  color: Colors.green,
-                                  size: 16.0,
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(comment.data),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    controller.addLikeToComment(comment.id);
+                                  },
+                                  icon: const Icon(
+                                    Icons.thumb_up,
+                                    color: Colors.green,
+                                    size: 16.0,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    );
+                                Text(
+                                  '${comment.likes}',
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ));
                   },
                 ),
                 failed: (message, exception) => Center(
