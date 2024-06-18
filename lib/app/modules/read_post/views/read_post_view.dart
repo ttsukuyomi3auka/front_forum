@@ -4,6 +4,7 @@ import 'package:front_forum/app/models/user/user.dart';
 import 'package:front_forum/app/modules/widgets/custom_app_bar.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:gradient_icon/gradient_icon.dart';
 import 'package:intl/intl.dart';
 import '../controllers/read_post_controller.dart';
 
@@ -103,7 +104,7 @@ class ReadPostView extends GetView<ReadPostController> {
                               },
                               icon: const Icon(
                                 Icons.thumb_up,
-                                color: Colors.orange,
+                                color: Colors.green,
                                 size: 16.0,
                               ),
                             ),
@@ -234,7 +235,7 @@ class CommentsPanel extends StatelessWidget {
                                 },
                                 icon: const Icon(
                                   Icons.thumb_up,
-                                  color: Colors.orange,
+                                  color: Colors.green,
                                   size: 16.0,
                                 ),
                               ),
@@ -282,7 +283,16 @@ class CommentsPanel extends StatelessWidget {
                       controller.createComment();
                     }
                   },
-                  icon: const Icon(Icons.send, color: Colors.orange),
+                  iconSize: 30,
+                  icon: const GradientIcon(
+                    icon: Icons.send,
+                    gradient: LinearGradient(
+                      colors: [Colors.green, Colors.orange, Colors.green],
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                    ),
+                    size: 30,
+                  ),
                 ),
               ],
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_forum/app/models/post/post.dart';
 import 'package:front_forum/app/models/user/user.dart';
+import 'package:front_forum/app/modules/moderation/controllers/moderation_controller.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -8,8 +9,9 @@ import 'package:intl/intl.dart';
 
 class PostModerationList extends StatelessWidget {
   final PostResponse post;
+  final ModerationController controller;
 
-  PostModerationList({required this.post});
+  PostModerationList({required this.post, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +96,7 @@ class PostModerationList extends StatelessWidget {
                             children: [
                               ElevatedButton(
                                   onPressed: () {
-                                    //TODO запрос на одобрение поста
+                                    controller.approvePost(item.id);
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
@@ -115,7 +117,7 @@ class PostModerationList extends StatelessWidget {
                               ),
                               ElevatedButton(
                                   onPressed: () {
-                                    //TODO запрос на отклонение поста
+                                    controller.rejectPost(item.id);
                                   },
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,

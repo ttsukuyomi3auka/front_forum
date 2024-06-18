@@ -43,10 +43,6 @@ class NotMeWidget extends StatelessWidget {
                     return FutureBuilder<User?>(
                       future: post.getAuthor,
                       builder: (context, authorSnapshot) {
-                        if (!authorSnapshot.hasData) {
-                          return const SizedBox();
-                        }
-                        var author = authorSnapshot.data!;
                         return Padding(
                           padding: EdgeInsets.only(
                               right: MediaQuery.of(context).size.width / 2),
@@ -59,7 +55,7 @@ class NotMeWidget extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      Get.toNamed(Routes.READ_POST,
+                                      Get.offAndToNamed(Routes.READ_POST,
                                           parameters: {"postId": post.id});
                                     },
                                     child: MouseRegion(
@@ -102,7 +98,7 @@ class NotMeWidget extends StatelessWidget {
                                     children: [
                                       const Icon(
                                         Icons.thumb_up,
-                                        color: Colors.orange,
+                                        color: Colors.green,
                                         size: 16.0,
                                       ),
                                       const SizedBox(width: 4.0),

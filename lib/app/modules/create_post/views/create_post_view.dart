@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';
 import 'package:get/get.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import '../controllers/create_post_controller.dart';
 
 class CreatePostView extends GetView<CreatePostController> {
@@ -10,17 +11,25 @@ class CreatePostView extends GetView<CreatePostController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () {
+        title: GestureDetector(
+          onTap: () {
             Get.offAndToNamed(Routes.HOME);
           },
-        ),
-        title: const Text(
-          'Поделись со всеми',
-          style: TextStyle(color: Colors.black),
+          child: GradientText(
+            'Поделись со всеми',
+            style: const TextStyle(
+              fontSize: 25.0,
+              fontWeight: FontWeight.bold,
+            ),
+            colors: const [
+              Colors.orange,
+              Colors.red,
+              Colors.teal,
+            ],
+          ),
         ),
         actions: [
           TextButton(

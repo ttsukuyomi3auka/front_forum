@@ -27,7 +27,10 @@ class ModerationView extends GetView<ModerationController> {
             Expanded(
               child: TabBarView(
                 children: [
-                  Obx(() => PostModerationList(post: controller.posts.value)),
+                  Obx(() => PostModerationList(
+                        post: controller.posts.value,
+                        controller: controller,
+                      )),
                   Obx(() => CommentsModerationList(
                       comments: controller.comments.value)),
                 ],

@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: GradientText(
           'Смысл',
           style: const TextStyle(
-            fontSize: 20.0,
+            fontSize: 25.0,
             fontWeight: FontWeight.bold,
           ),
           colors: const [
@@ -37,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   AuthService.to.currentUser.value.role == Roles.moderator) {
                 return ElevatedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.MODERATION);
+                      Get.offAndToNamed(Routes.MODERATION);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -106,7 +106,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
                   return ElevatedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.PROFILE,
+                      Get.offAndToNamed(Routes.PROFILE,
                           parameters: {"userId": AuthService.to.userId});
                     },
                     style: ElevatedButton.styleFrom(

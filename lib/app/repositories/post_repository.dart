@@ -43,6 +43,16 @@ class PostRepository {
     return response;
   }
 
+  Future<bool> approvePost(String postId) async {
+    var response = await api.add("${ApiEndpoints.approvePost}$postId");
+    return response;
+  }
+
+  Future<bool> rejectPost(String postId) async {
+    var response = await api.add("${ApiEndpoints.rejectPost}$postId");
+    return response;
+  }
+
   Future<bool> addLikeToPost(String postId) async {
     var response = await api.add("${ApiEndpoints.addLikeToPost}$postId");
     return response;

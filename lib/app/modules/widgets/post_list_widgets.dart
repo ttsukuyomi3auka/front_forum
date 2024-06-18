@@ -74,7 +74,7 @@ class PostList extends StatelessWidget {
                           const SizedBox(height: 4.0),
                           GestureDetector(
                             onTap: () {
-                              Get.toNamed(
+                              Get.offAndToNamed(
                                 Routes.READ_POST,
                                 parameters: {"postId": item.id},
                               );
@@ -95,18 +95,31 @@ class PostList extends StatelessWidget {
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            item.description.length > 100
-                                ? '${item.description.substring(0, 100)}...'
-                                : item.description,
-                            style: const TextStyle(fontSize: 14.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                item.description.length > 100
+                                    ? '${item.description.substring(0, 100)}...'
+                                    : item.description,
+                                style: const TextStyle(fontSize: 14.0),
+                              ),
+                              Wrap(
+                                spacing: 8.0,
+                                children: item.areas.map((area) {
+                                  return Chip(
+                                    label: Text(area.title),
+                                  );
+                                }).toList(),
+                              ),
+                            ],
                           ),
                           const SizedBox(height: 8.0),
                           Row(
                             children: [
                               const Icon(
                                 Icons.thumb_up,
-                                color: Colors.orange,
+                                color: Colors.green,
                                 size: 16.0,
                               ),
                               const SizedBox(width: 4.0),

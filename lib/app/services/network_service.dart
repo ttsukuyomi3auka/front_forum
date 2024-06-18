@@ -76,6 +76,7 @@ class NetworkService extends GetxService {
       var response = await _client.post(url, data: data);
       return response.statusCode == 201;
     } on DioException catch (e) {
+      printInfo(info: e.toString());
       return false;
     } catch (e) {
       printInfo(info: e.toString());

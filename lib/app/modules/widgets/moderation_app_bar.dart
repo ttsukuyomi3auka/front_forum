@@ -18,7 +18,7 @@ class ModerationAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: GradientText(
           'Смысл',
           style: const TextStyle(
-            fontSize: 20.0,
+            fontSize: 25.0,
             fontWeight: FontWeight.bold,
           ),
           colors: const [

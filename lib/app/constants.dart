@@ -37,6 +37,8 @@ abstract class ApiEndpoints {
   static const String getUserPosts = "/post/user-posts/";
   static const String addLikeToPost = "/post/like";
   static const String getAllNonApprovedPosts = "/post/non-approved";
+  static const String approvePost = "/post/approve";
+  static const String rejectPost = "/post/reject";
 
   static const String getArea = "/area/";
 

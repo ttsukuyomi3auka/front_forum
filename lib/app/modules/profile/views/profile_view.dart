@@ -4,6 +4,7 @@ import 'package:front_forum/app/modules/profile/views/not_me_widgets.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:front_forum/app/services/auth_service.dart';
 import 'package:get/get.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
@@ -15,7 +16,23 @@ class ProfileView extends GetView<ProfileController> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Профиль'),
+          title: GestureDetector(
+            onTap: () {
+              Get.offAndToNamed(Routes.HOME);
+            },
+            child: GradientText(
+              'Профиль',
+              style: const TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.bold,
+              ),
+              colors: const [
+                Colors.orange,
+                Colors.red,
+                Colors.teal,
+              ],
+            ),
+          ),
           actions: [
             (controller.userId == AuthService.to.userId)
                 ? Padding(

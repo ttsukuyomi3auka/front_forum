@@ -67,7 +67,7 @@ class ItsMeWidget extends StatelessWidget {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      Get.toNamed(Routes.READ_POST,
+                                      Get.offAndToNamed(Routes.READ_POST,
                                           parameters: {"postId": post.id});
                                     },
                                     child: MouseRegion(
@@ -110,7 +110,7 @@ class ItsMeWidget extends StatelessWidget {
                                     children: [
                                       const Icon(
                                         Icons.thumb_up,
-                                        color: Colors.orange,
+                                        color: Colors.green,
                                         size: 16.0,
                                       ),
                                       const SizedBox(width: 4.0),
