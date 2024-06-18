@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -26,9 +27,23 @@ class LoginView extends GetView<LoginController> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text("Добро пожаловать.",
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
+                    GestureDetector(
+                      onTap: () {
+                        Get.offAndToNamed(Routes.HOME);
+                      },
+                      child: GradientText(
+                        'Добро пожаловать.',
+                        style: const TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        colors: const [
+                          Colors.orange,
+                          Colors.red,
+                          Colors.teal,
+                        ],
+                      ),
+                    ),
                     const SizedBox(
                       height: 40,
                     ),

@@ -4,7 +4,6 @@ import 'package:front_forum/app/constants.dart';
 import 'package:front_forum/app/models/api%20response/api_response.dart';
 import 'package:front_forum/app/models/comment/comment.dart';
 import 'package:front_forum/app/models/post/post.dart';
-import 'package:front_forum/app/models/user/user.dart';
 import 'package:front_forum/app/repositories/comment_repository.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:front_forum/app/repositories/user_repository.dart';

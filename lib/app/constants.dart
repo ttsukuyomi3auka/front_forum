@@ -30,6 +30,7 @@ abstract class ApiEndpoints {
 
   static const String getUserById = "/user/";
   static const String addAreasToUser = "/user/areas";
+  static const String updateUser = "/user/update";
 
   static const String getPostById = "/post/post";
   static const String getApprovedPost = "/post/";
@@ -133,3 +134,26 @@ Post emptyPost = Post(
     likes: 0,
     comments: [],
     areas: []);
+
+class UpdateUser {
+  String username;
+  String name;
+  String surname;
+  String aboutMe;
+
+  UpdateUser({
+    required this.username,
+    required this.name,
+    required this.surname,
+    required this.aboutMe,
+  });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'username': username,
+      'name': name,
+      'surname': surname,
+      'aboutMe': aboutMe,
+    };
+  }
+}

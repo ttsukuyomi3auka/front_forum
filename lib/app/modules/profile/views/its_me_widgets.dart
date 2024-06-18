@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:front_forum/app/models/user/user.dart';
 import 'package:front_forum/app/modules/profile/controllers/profile_controller.dart';
+import 'package:front_forum/app/modules/profile/views/profile_select_areas_widget.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -13,12 +13,6 @@ class ItsMeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final usernameController = TextEditingController();
-    final aboutMeController = TextEditingController();
-    final nameController = TextEditingController();
-    final surnameController = TextEditingController();
-    final areasController = TextEditingController();
-
     return Expanded(
       child: TabBarView(
         children: [
@@ -156,11 +150,11 @@ class ItsMeWidget extends StatelessWidget {
                 color: Colors.orange,
               )),
               success: (user) {
-                usernameController.text = user.username;
-                nameController.text = user.name;
-                surnameController.text = user.surname;
-                aboutMeController.text = user.aboutMe;
-                areasController.text =
+                controller.usernameController.text = user.username;
+                controller.nameController.text = user.name;
+                controller.surnameController.text = user.surname;
+                controller.aboutMeController.text = user.aboutMe;
+                controller.areasController.text =
                     user.areas.map((area) => area.title).join(', ');
 
                 return Padding(
@@ -175,42 +169,46 @@ class ItsMeWidget extends StatelessWidget {
                             ProfileItem(
                                 title: "Никнейм",
                                 content: user.username,
-                                controller: usernameController,
+                                controller: controller.usernameController,
                                 isEditable: controller.isEditable.value),
                             ProfileItem(
                                 title: "Имя",
                                 content: user.name,
-                                controller: nameController,
+                                controller: controller.nameController,
                                 isEditable: controller.isEditable.value),
                             ProfileItem(
                                 title: "Фамилия",
                                 content: user.surname,
-                                controller: surnameController,
+                                controller: controller.surnameController,
                                 isEditable: controller.isEditable.value),
                             ProfileItem(
                                 title: "Обо мне",
                                 content: user.aboutMe,
-                                controller: aboutMeController,
+                                controller: controller.aboutMeController,
                                 isEditable: controller.isEditable.value),
                             ProfileItem(
                               title: "Выбранные сферы",
-                              content: areasController.text,
-                              controller: areasController,
-                              isEditable: controller.isEditable.value,
+                              content: controller.areasController.text,
+                              controller: controller.areasController,
+                              isEditable: false,
                             ),
                             Center(
                               child: ElevatedButton(
                                 onPressed: () {
                                   controller.isEditable.toggle();
-                                  //TODO Логика изменения данных юзера
+                                  if (!controller.isEditable.value) {
+                                    controller.updateUser();
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,
                                   padding: const EdgeInsets.all(5),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(3),
-                                    side:
-                                        const BorderSide(color: Colors.orange),
+                                    side: BorderSide(
+                                        color: controller.isEditable.value
+                                            ? Colors.green
+                                            : Colors.red),
                                   ),
                                 ),
                                 child: Text(
@@ -219,6 +217,31 @@ class ItsMeWidget extends StatelessWidget {
                                       : 'Редактировать',
                                   style: const TextStyle(
                                       fontSize: 16, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Center(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  _openSelectAreasDialog(context, user);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.white,
+                                  padding: const EdgeInsets.all(5),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(3),
+                                    side: const BorderSide(color: Colors.green),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Выбрать интересующие сферы деятельности',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                             ),
@@ -242,6 +265,22 @@ class ItsMeWidget extends StatelessWidget {
           }),
         ],
       ),
+    );
+  }
+
+  void _openSelectAreasDialog(BuildContext context, User user) {
+    controller.selectedAreas.clear();
+    controller.selectedAreas.addAll(user.areas.map((area) => area.id));
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: ProfileSelectAreas(controller, controller.areas),
+        );
+      },
     );
   }
 }

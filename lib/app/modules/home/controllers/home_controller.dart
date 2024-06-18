@@ -36,8 +36,11 @@ class HomeController extends GetxController {
           loading: () => {},
           success: (User data) {
             currentUser.value = data;
-            print(currentUser.value.areas.isNotEmpty);
             hasAreas.value = currentUser.value.areas.isNotEmpty;
+            selectedAreas.clear();
+            currentUser.value.areas.forEach((area) {
+              selectedAreas.add(area.id);
+            });
           },
           failed: (er, ex) => {});
     }
@@ -88,7 +91,6 @@ class HomeController extends GetxController {
   }
 
   void saveAreas() async {
-    print(selectedAreas);
     if (selectedAreas.isEmpty) {
       Get.snackbar("Ошибка", "Выберите хотя бы одну сферу");
     }

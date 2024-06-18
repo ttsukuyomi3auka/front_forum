@@ -1,3 +1,4 @@
+import 'package:front_forum/app/repositories/area_repository.dart';
 import 'package:front_forum/app/repositories/post_repository.dart';
 import 'package:front_forum/app/repositories/user_repository.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ class ProfileBinding extends Bindings {
       () => ProfileController(
         UserRepository(Get.find()),
         PostRepository(Get.find()),
+        AreaRepository(Get.find()),
         Get.parameters['userId']!,
       ),
     );

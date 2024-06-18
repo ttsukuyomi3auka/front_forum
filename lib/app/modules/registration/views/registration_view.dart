@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:simple_gradient_text/simple_gradient_text.dart';
 import '../controllers/registration_controller.dart';
 
 class RegistrationView extends GetView<RegistrationController> {
@@ -25,9 +26,23 @@ class RegistrationView extends GetView<RegistrationController> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text("Мы вас ждем.",
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
+                    GestureDetector(
+                      onTap: () {
+                        Get.offAndToNamed(Routes.HOME);
+                      },
+                      child: GradientText(
+                        'Мы вас ждем.',
+                        style: const TextStyle(
+                          fontSize: 25.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        colors: const [
+                          Colors.orange,
+                          Colors.red,
+                          Colors.teal,
+                        ],
+                      ),
+                    ),
                     const SizedBox(
                       height: 40,
                     ),

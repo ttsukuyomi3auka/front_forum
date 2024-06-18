@@ -97,16 +97,16 @@ class NetworkService extends GetxService {
     }
   }
 
-  Future<bool> addPost(String url, dynamic data) async {
+  Future<int> addPost(String url, dynamic data) async {
     try {
       var response = await _client.post(url, data: data);
-      return response.statusCode == 201;
+      return response.statusCode!;
     } on DioException catch (e) {
       printInfo(info: e.toString());
-      return false;
+      return e.response?.statusCode ?? 500;
     } catch (e) {
       printInfo(info: e.toString());
-      return false;
+      return 500;
     }
   }
 }

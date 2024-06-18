@@ -27,6 +27,23 @@ class UserRepository {
     var response = await api.addPost(
         "${ApiEndpoints.addAreasToUser}${AuthService.to.userId}",
         {"areas": data});
-    return response;
+    print(response);
+    if (response == 201) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<int> updateUser(UpdateUser data) async {
+    var response = await api.addPost(
+        "${ApiEndpoints.updateUser}${AuthService.to.userId}", data.toJson());
+    if (response == 201) {
+      return 1;
+    } else if (response == 403) {
+      return 2;
+    } else {
+      return 3;
+    }
   }
 }
