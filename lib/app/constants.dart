@@ -45,6 +45,8 @@ abstract class ApiEndpoints {
   static const String createComment = "/comment/create";
   static const String getPostComments = "/comment/post";
   static const String getAllNonApprovedComments = "/comment/non-approved";
+  static const String approveComment = "/comment/approve";
+  static const String rejectComment = "/comment/reject";
 }
 
 class ShortUser {

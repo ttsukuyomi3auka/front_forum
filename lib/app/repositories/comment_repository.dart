@@ -42,4 +42,14 @@ class CommentRepository {
     var response = await api.create(ApiEndpoints.createComment, data.toJson());
     return response;
   }
+
+  Future<bool> approveComment(String commentId) async {
+    var response = await api.add("${ApiEndpoints.approveComment}$commentId");
+    return response;
+  }
+
+  Future<bool> rejectComment(String commentId) async {
+    var response = await api.add("${ApiEndpoints.rejectComment}$commentId");
+    return response;
+  }
 }

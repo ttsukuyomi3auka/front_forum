@@ -60,4 +60,16 @@ class ModerationController extends GetxController {
       getPosts();
     }
   }
+
+  void approveComment(String commentId) async {
+    if (await commentRepository.approveComment(commentId)) {
+      getComments();
+    }
+  }
+
+  void rejectComment(String commentId) async {
+    if (await commentRepository.rejectComment(commentId)) {
+      getComments();
+    }
+  }
 }

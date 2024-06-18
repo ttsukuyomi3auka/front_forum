@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           children: [
             Obx(() {
               if (AuthService.to.isLoggedIn() &&
-                      AuthService.to.currentUser.value == Roles.admin ||
+                      AuthService.to.currentUser.value.role == Roles.admin ||
                   AuthService.to.currentUser.value.role == Roles.moderator) {
                 return ElevatedButton(
                     onPressed: () {

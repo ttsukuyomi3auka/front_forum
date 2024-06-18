@@ -32,7 +32,9 @@ class ModerationView extends GetView<ModerationController> {
                         controller: controller,
                       )),
                   Obx(() => CommentsModerationList(
-                      comments: controller.comments.value)),
+                        comments: controller.comments.value,
+                        controller: controller,
+                      )),
                 ],
               ),
             ),

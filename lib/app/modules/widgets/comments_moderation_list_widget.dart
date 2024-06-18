@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front_forum/app/models/comment/comment.dart';
+import 'package:front_forum/app/modules/moderation/controllers/moderation_controller.dart';
 import 'package:front_forum/app/repositories/comment_repository.dart';
 import 'package:front_forum/app/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -7,8 +8,9 @@ import 'package:intl/intl.dart';
 
 class CommentsModerationList extends StatelessWidget {
   final CommentsResponse comments;
+  final ModerationController controller;
 
-  CommentsModerationList({required this.comments});
+  CommentsModerationList({required this.comments, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +81,7 @@ class CommentsModerationList extends StatelessWidget {
                         children: [
                           ElevatedButton(
                               onPressed: () {
-                                //TODO запрос на одобрение комментария
+                                controller.approveComment(item.id);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
@@ -94,10 +96,12 @@ class CommentsModerationList extends StatelessWidget {
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 14),
                               )),
-                          const SizedBox(width: 10,),
+                          const SizedBox(
+                            width: 10,
+                          ),
                           ElevatedButton(
                               onPressed: () {
-                                //TODO запрос на отклонение комментария
+                                controller.rejectComment(item.id);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
